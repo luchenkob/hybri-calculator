@@ -1,5 +1,5 @@
 :root {
-  --color-surface: white;
+  --color-white: #f5f5f5;
   --color-dark: #1a1a1a;
   --color-border: #cccccc;
 }
@@ -29,14 +29,15 @@ header {
   text-align: center;
 }
 
-.headerContent {
+.headerContainer {
   max-width: 1440px;
   padding: 130px 56px;
   position: relative;
 }
 
 footer,
-.headerContent {
+.headerContainer,
+.contactContainer {
   margin: 0 auto;
 }
 
@@ -44,16 +45,37 @@ footer {
   margin-top: 60px;
   text-align: left;
   max-width: 1224px;
+  padding: 0 24px;
+}
+
+.footerContainer {
   border-top: 1px solid var(--color-border);
 }
 
-.footerBox {
+.footerDisclaimerBox {
   padding: 0 24px;
+}
+
+.contactSection {
+  background: url("./assets/images/background.png");
+  padding: 100px 0;
+}
+
+.contactContainer {
+  max-width: 780px;
+  text-align: center;
+  background: var(--color-dark);
+  padding: 40px 30px;
 }
 
 h1 {
   color: #f5f5f5;
   font-size: 48px;
+}
+
+h2 {
+  color: #f5f5f5;
+  font-size: 32px;
 }
 
 h4 {
@@ -67,10 +89,30 @@ h4 {
 }
 
 button {
+  font-family: " ToyotaType", "Arial", "Helvetica", sans-serif;
   background: none;
   outline: none;
   border: none;
   cursor: pointer;
+  font-size: 12px;
+  text-transform: uppercase;
+  margin: 5px;
+}
+
+.primaryButton,
+.secondaryButton {
+  border-radius: 80px;
+  font-weight: bold;
+  padding: 10px 30px;
+}
+
+.primaryButton {
+  background: var(--color-white);
+}
+
+.secondaryButton {
+  border: 1px solid var(--color-white);
+  color: var(--color-white);
 }
 
 .closeButton {

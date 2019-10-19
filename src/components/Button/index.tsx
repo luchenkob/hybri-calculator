@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import CloseImage from "../assets/images/closeButton.png";
+import CloseImage from "../../assets/images/closeButton.png";
 
 const IconType = {
   CloseImage: CloseImage
@@ -10,7 +10,7 @@ export function Button({
   children,
   className
 }: {
-  iconType: string;
+  iconType?: string;
   children?: ReactNode;
   className?: string;
 }) {

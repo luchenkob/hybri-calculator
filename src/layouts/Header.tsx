@@ -4,7 +4,7 @@ import { Button } from "@hybrid/components";
 export function Header() {
   return (
     <header>
-      <div className="headerContent">
+      <div className="headerContainer">
         <h1>Your Hybrid Comparison</h1>
         <Button
           className="closeButton"
