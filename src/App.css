@@ -41,7 +41,8 @@ header {
 footer,
 .headerContainer,
 .contactContainer,
-.hybridSavingContainer {
+.hybridSavingContainer,
+.compareTableContainer {
   margin: 0 auto;
 }
 
@@ -80,6 +81,18 @@ footer {
 .hybridSavingContainer {
   max-width: 810px;
 }
+
+.compareTableContainer {
+  max-width: 850px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.compareTableContainer > div {
+  flex: 1;
+  margin: 0 20px;
+}
+
 .contactContainer {
   max-width: 780px;
   text-align: center;
@@ -103,11 +116,23 @@ h2 {
 
 h3 {
   font-size: 24px;
+  margin-top: 8px;
 }
 
 h4 {
   font-size: 14px;
   color: var(--color-dark);
+}
+
+sup {
+  font-size: 10px;
+  padding-left: 4px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
 }
 
 input,
@@ -118,10 +143,55 @@ select {
   background: none;
   font-family: " ToyotaType", "Arial", "Helvetica", sans-serif;
 }
-input {
+.inputContainer {
   border-bottom: 1px solid var(--color-dark);
+  display: inline-block;
+}
+input {
   font-size: 24px;
-  max-width: 80px;
+  display: inline;
+  max-width: 100px;
+}
+
+.selectContainer {
+  font-size: 24px;
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+.selectContent {
+  border-bottom: 1px solid var(--color-dark);
+  background: url("./assets/images/link.png") no-repeat right center;
+  cursor: pointer;
+  padding-bottom: 8px;
+  text-align: left;
+}
+.selectBox {
+  position: absolute;
+  left: 0;
+  background: white;
+  min-width: 360px;
+  width: 100%;
+  z-index: 1000;
+}
+
+.selectItem {
+  border-bottom: 1px solid var(--color-white);
+  padding: 16px;
+}
+
+.selectItem:hover {
+  background: var(--color-dark);
+  color: white;
+}
+
+.compareVehicle {
+  min-width: 140px;
+  display: inline-block;
+  margin: 0 8px;
+}
+.comparisonVehicle {
+  min-width: 360px;
 }
 
 .body1 {
@@ -135,6 +205,7 @@ input {
 }
 
 .captionText {
+  text-align: left;
   font-size: 12px;
   color: var(--color-gray);
 }
@@ -199,4 +270,8 @@ button {
   border-bottom: 1px solid var(--color-border);
   padding-bottom: 16px;
   margin-bottom: 40px;
+}
+
+.no-margin {
+  margin: 0;
 }
