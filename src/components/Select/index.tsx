@@ -4,11 +4,13 @@ import { useOutsideClick } from "@hybrid/hooks";
 export function Select({
   options,
   value,
-  onChange
+  onChange,
+  className
 }: {
   options: any;
   value: any;
   onChange: (value: any) => void;
+  className?: string;
 }) {
   const ref = useRef(null);
   const [open, setOpen] = useState(false);
@@ -33,7 +35,10 @@ export function Select({
     setOpen(!open);
   };
   return (
-    <div className="selectContainer" ref={ref}>
+    <div
+      className={className ? className + " selectContainer" : "selectContainer"}
+      ref={ref}
+    >
       <div onClick={toggleOpen} className="selectContent">
         {label}
       </div>

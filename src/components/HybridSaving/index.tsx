@@ -66,7 +66,7 @@ export function HybridSaving() {
         />
         <HybridSavingItem
           title={<>Estimated Extra KM'S Per Year</>}
-          value={<p className="caculationText">Travel 12,000km further</p>}
+          value={<p className="caculationText ">Travel 12,000km further</p>}
         />
       </div>
       <CompareTable />

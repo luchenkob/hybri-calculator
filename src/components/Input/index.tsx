@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 export function Input({
   value,
@@ -9,8 +9,14 @@ export function Input({
   currency?: boolean;
   suffix?: string;
 }) {
+  const inputEl = useRef<HTMLInputElement>(null);
   const [inputValue, setValue] = useState(value);
   const [isEditting, setIsEditting] = useState(false);
+
+  useEffect(() => {
+    console.log(inputEl.current);
+  }, [inputEl]);
+
   const onChange = (e: any) => {
     setValue(e.target.value);
   };
@@ -28,22 +34,29 @@ export function Input({
       .toFixed(2)
       .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
 
+  const editHandler = (e: any) => {
+    if (inputEl.current != null) {
+      inputEl.current.focus();
+    }
+    setIsEditting(!isEditting);
+  };
   return (
-    <span className="inputContainer">
-      {isEditting ? (
-        <input
-          type="text"
-          value={inputValue}
-          onChange={onChange}
-          onBlur={onBlur}
-        />
-      ) : (
-        <span onClick={() => setIsEditting(!isEditting)}>
+    <div className="inputContainer" onClick={editHandler}>
+      <input
+        className={isEditting ? "active" : ""}
+        ref={inputEl}
+        type="text"
+        value={inputValue}
+        onChange={onChange}
+        onBlur={onBlur}
+      />
+      {!isEditting && (
+        <span>
           {currency ? currencyFormat(inputValue) : formatNumber(inputValue)}
           <sup>{suffix}</sup>
         </span>
       )}
-    </span>
+    </div>
   );
 }
 

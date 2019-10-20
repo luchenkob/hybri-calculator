@@ -22,7 +22,7 @@ export function ComparisonSteps() {
   return (
     <div className="ComparisonStepsSection">
       <ComparisonStep index={1}>
-        <p className="body1 text-center">
+        <p className="body1 text-center no-margin">
           Personalise your driving information to estimate your hybrid saving
         </p>
         <div className="text-center">
@@ -41,7 +41,7 @@ export function ComparisonSteps() {
         </div>
       </ComparisonStep>
       <ComparisonStep index={2}>
-        <div className=" text-center">
+        <div className="carComparisionArea text-center">
           <span className="body1">I want to compare </span>
           <div className="compareVehicle">
             <Select
@@ -60,9 +60,10 @@ export function ComparisonSteps() {
         </div>
         <div className="text-center">
           <div className="inputGroup">
-            <p className="captionText">Comparison vehicle </p>
+            <p className="captionText">Comparison vehicle</p>
             <div className="comparisonVehicle">
               <Select
+                className="comparisonVehicleDropdown"
                 options={[
                   { value: "1", label: "RAV4" },
                   { value: "2", label: "Corolla" },
@@ -79,6 +80,7 @@ export function ComparisonSteps() {
             <p className="captionText">Hybrid vehicle </p>
             <div className="comparisonVehicle">
               <Select
+                className="comparisonVehicleDropdown"
                 options={[
                   { value: "1", label: "RAV4" },
                   { value: "2", label: "Corolla" },

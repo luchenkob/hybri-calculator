@@ -71,7 +71,14 @@ footer {
 }
 
 .comparisonStep {
-  margin-top: 50px;
+  margin-bottom: 80px;
+}
+
+.comparisonStep > .overlineText {
+  margin-bottom: 30px;
+}
+.comparisonStep:last-child {
+  margin-bottom: 0;
 }
 
 .hybridSavingSection {
@@ -80,6 +87,7 @@ footer {
 }
 .hybridSavingContainer {
   max-width: 810px;
+  padding-bottom: 30px;
 }
 
 .compareTableContainer {
@@ -129,6 +137,10 @@ sup {
   padding-left: 4px;
 }
 
+p {
+  margin: 0;
+  padding: 0;
+}
 ul {
   margin: 0;
   padding: 0;
@@ -151,8 +163,13 @@ input {
   font-size: 24px;
   display: inline;
   max-width: 100px;
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
 }
-
+input.active {
+  position: static;
+}
 .selectContainer {
   font-size: 24px;
   position: relative;
@@ -208,6 +225,7 @@ input {
   text-align: left;
   font-size: 12px;
   color: var(--color-gray);
+  margin-bottom: 8px;
 }
 
 .caculationText {
@@ -254,7 +272,7 @@ button {
 
 .inputGroup {
   display: inline-block;
-  margin: 30px 35px;
+  margin: 50px 35px 0;
 }
 
 .arrowSign {
@@ -274,4 +292,101 @@ button {
 
 .no-margin {
   margin: 0;
+}
+.comparisonVehicleDropdown,
+.comparisonVehicleDropdown .selectContent {
+  font-size: 18px;
+}
+
+@media (max-width: 767px) {
+  /* //CSS */
+  .ComparisonStepsSection,
+  .hybridSavingSection {
+    padding: 48px 32px 0;
+  }
+  .ComparisonStepsSection {
+    padding-bottom: 60px;
+  }
+  .comparisonStep > .overlineText {
+    margin-bottom: 16px;
+  }
+  .overlineText,
+  .body1,
+  .carComparisionArea {
+    text-align: left;
+  }
+  .overlineText,
+  label {
+    font-size: 12px;
+    color: var(--color-gray);
+    display: block;
+  }
+  label {
+    margin-bottom: 8px;
+  }
+  input {
+    width: 100%;
+  }
+  .selectContent {
+    font-size: 20px;
+  }
+  .inputGroup {
+    display: block;
+    margin: 32px 0;
+  }
+  .inputContainer {
+    width: 100%;
+  }
+  .body1 {
+    font-size: 20px;
+  }
+  .caculationText {
+    font-size: 20px;
+  }
+  .compareVehicle {
+    min-width: 76px;
+    margin: 8px 8px 8px 0;
+  }
+
+  .compareTableContainer {
+    display: none;
+  }
+  .comparisonVehicle,
+  .selectBox {
+    min-width: 100%;
+  }
+  .comparisonVehicleDropdown,
+  .comparisonVehicleDropdown .selectContent {
+    font-size: 16px;
+  }
+  .caculationText {
+    margin-top: 16px;
+  }
+  h1 {
+    font-size: 32px;
+  }
+}
+
+/* 
+  ##Device = Most of the Smartphones Mobiles (Portrait)
+  ##Screen = B/w 320px to 479px
+*/
+
+@media (max-width: 320px) {
+  /* //CSS */
+  .ComparisonStepsSection,
+  .hybridSavingSection {
+    padding: 48px 24px 0;
+  }
+  .ComparisonStepsSection {
+    padding-bottom: 60px;
+  }
+  .compareVehicle {
+    min-width: 76px;
+    margin: 8px 8px 8px 0;
+  }
+
+  .comparisonStep {
+    margin-bottom: 60px;
+  }
 }
