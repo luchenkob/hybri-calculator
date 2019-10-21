@@ -42,7 +42,8 @@ footer,
 .headerContainer,
 .contactContainer,
 .hybridSavingContainer,
-.compareTableContainer {
+.compareTableContainer,
+.carPictureContainer {
   margin: 0 auto;
 }
 
@@ -207,6 +208,9 @@ input.active {
   display: inline-block;
   margin: 0 8px;
 }
+.compareVehicle .selectContent {
+  padding-right: 30px;
+}
 .comparisonVehicle {
   min-width: 360px;
 }
@@ -298,6 +302,20 @@ button {
   font-size: 18px;
 }
 
+.carPictureContainer {
+  margin-top: 40px;
+  max-width: 960px;
+  display: flex;
+  justify-content: space-evenly;
+}
+.carPicture img {
+  display: block;
+  margin: 0 auto;
+}
+.hiddenContainer {
+  display: none;
+}
+
 @media (max-width: 767px) {
   /* //CSS */
   .ComparisonStepsSection,
@@ -365,8 +383,69 @@ button {
   h1 {
     font-size: 32px;
   }
+  .compareVehicle .selectBox {
+    width: 300%;
+  }
+  .compareVehicle .selectItem {
+    font-size: 20px;
+  }
+
+  .hiddenContainer img,
+  .carPicture img {
+    width: 300px;
+  }
+  .carPictureContainer {
+    position: relative;
+  }
+  .carPicture.left img {
+    position: absolute;
+    left: -10%;
+  }
+
+  .carPicture.right img {
+    position: absolute;
+    right: -10%;
+  }
+
+  .hiddenContainer {
+    display: block;
+  }
+  .hiddenContainer img {
+    opacity: 0;
+  }
 }
 
+@media (max-width: 560px) {
+  .hiddenContainer img,
+  .carPicture img {
+    width: 250px;
+  }
+  .carPicture.left img {
+    position: absolute;
+    left: -20%;
+  }
+
+  .carPicture.right img {
+    position: absolute;
+    right: -20%;
+  }
+}
+
+@media (max-width: 400px) {
+  .hiddenContainer img,
+  .carPicture img {
+    width: 180px;
+  }
+  .carPicture.left img {
+    position: absolute;
+    left: -20%;
+  }
+
+  .carPicture.right img {
+    position: absolute;
+    right: -20%;
+  }
+}
 /* 
   ##Device = Most of the Smartphones Mobiles (Portrait)
   ##Screen = B/w 320px to 479px

@@ -16,8 +16,9 @@ export function Select({
   const [open, setOpen] = useState(false);
   const [compValue, setCompValue] = useState(value);
 
-  const label = options.filter((item: any) => item.value === compValue)[0]
-    .label;
+  const selectedItem = options.filter(
+    (item: any) => compValue && item.value === compValue
+  );
 
   useOutsideClick(ref, () => {
     setOpen(false);
@@ -40,7 +41,7 @@ export function Select({
       ref={ref}
     >
       <div onClick={toggleOpen} className="selectContent">
-        {label}
+        {selectedItem[0] ? selectedItem[0].label : "Select an item"}
       </div>
       {open && (
         <ul className="selectBox">

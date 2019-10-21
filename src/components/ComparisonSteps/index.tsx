@@ -1,8 +1,21 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState, useEffect } from "react";
 import { Input, Select } from "@hybrid/components";
+import { DefaultData } from "../../assets/data/DefaultData";
 import Car1 from "../../assets/images/car1.png";
 import Car2 from "../../assets/images/car2.png";
 
+const { defaultParameters, models } = DefaultData;
+const defaultModelsOptions = models.map(item => ({
+  value: item.id,
+  label: item.lineName
+}));
+
+const tranformSubModelToOptions = (options: any) => {
+  return options.map((item: any) => ({
+    value: item.grade,
+    label: item.grade
+  }));
+};
 function ComparisonStep({
   index,
   children
@@ -18,7 +31,115 @@ function ComparisonStep({
   );
 }
 
-export function ComparisonSteps() {
+export function ComparisonSteps({
+  onChange
+}: {
+  onChange: (data: any) => void;
+}) {
+  const [modelData, setModelData] = useState(DefaultData);
+  const [fuelPrice, setFuelPrice] = useState<string>(
+    defaultParameters.fuelPrice
+  );
+  const [kmsPerYear, setKmsPerYear] = useState<string>(
+    defaultParameters.kmsPerYear
+  );
+  const [modelOptions, setModelOptions] = useState(defaultModelsOptions);
+  const [comparisonOptions, setComparisonOptions] = useState<any>([]);
+  const [hybridOptions, setHybridOptions] = useState<any>([]);
+  const [selectedComparisonVehicle, setSelectedComparisonVehicle] = useState<
+    any
+  >({ grade: null });
+  const [selectedHybridVehicle, setSelectedHybridVehicle] = useState<any>({
+    grade: null
+  });
+  const [selectedModel, setSelectedModel] = useState<string | null>(null);
+  const [selectedModelObject, setSelectedModelObject] = useState<any>(null);
+
+  const changeModel = (value: string) => {
+    const modelList = modelData.models.filter((item: any) => item.id === value);
+    if (modelList.length > 0) {
+      setComparisonOptions(tranformSubModelToOptions(modelList[0].comparison));
+      setHybridOptions(tranformSubModelToOptions(modelList[0].hybrid));
+      setSelectedModel(value);
+      setSelectedModelObject(modelList[0]);
+    }
+  };
+
+  const handleComparisonChange = (value: any) => {
+    const comparisonList = selectedModelObject.comparison.filter(
+      (item: any) => item.grade === value
+    );
+    if (comparisonList.length > 0) {
+      setSelectedComparisonVehicle(comparisonList[0]);
+    }
+  };
+  const handleHybridChange = (value: any) => {
+    const hybridList = selectedModelObject.hybrid.filter(
+      (item: any) => item.grade === value
+    );
+    if (hybridList.length > 0) {
+      setSelectedHybridVehicle(hybridList[0]);
+    }
+  };
+
+  const calculateData = (
+    fuelPrice: string,
+    kmsPerYear: string,
+    selectedComparisonVehicle: any,
+    selectedHybridVehicle: any
+  ) => {
+    const { litresPer100Km, gramsCarbonPerKm } = selectedComparisonVehicle;
+    const {
+      litresPer100Km: hybridLitresPer100Km,
+      gramsCarbonPerKm: hybridGramsCarbonPerKm
+    } = selectedHybridVehicle;
+
+    const data = {
+      comparsion: {
+        fuelPrice:
+          (parseInt(fuelPrice) *
+            parseInt(kmsPerYear) *
+            parseInt(litresPer100Km)) /
+          100,
+        co2: (parseInt(gramsCarbonPerKm) * parseInt(kmsPerYear)) / 1000000,
+        travelledDistance: parseInt(kmsPerYear)
+      },
+      hybrid: {
+        fuelPrice:
+          (parseInt(fuelPrice) * parseInt(kmsPerYear) * hybridLitresPer100Km) /
+          100,
+        co2:
+          (parseInt(hybridGramsCarbonPerKm) * parseInt(kmsPerYear)) / 1000000,
+        travelledDistance:
+          (parseInt(litresPer100Km) / parseInt(hybridLitresPer100Km)) *
+          parseInt(kmsPerYear)
+      }
+    };
+    const saving = {
+      fuelPrice: data.comparsion.fuelPrice - data.hybrid.fuelPrice,
+      co2: data.comparsion.co2 - data.hybrid.co2,
+      travelledDistance:
+        data.hybrid.travelledDistance - data.comparsion.travelledDistance
+    };
+    onChange({ ...data, saving });
+  };
+  useEffect(() => {
+    if (
+      fuelPrice &&
+      kmsPerYear &&
+      selectedComparisonVehicle.grade &&
+      selectedHybridVehicle.grade
+    ) {
+      calculateData(
+        fuelPrice,
+        kmsPerYear,
+        selectedComparisonVehicle,
+        selectedHybridVehicle
+      );
+      console.log("HE");
+    }
+  }, [selectedComparisonVehicle, selectedHybridVehicle, fuelPrice, kmsPerYear]);
+
   return (
     <div className="ComparisonStepsSection">
       <ComparisonStep index={1}>
@@ -29,13 +150,18 @@ export function ComparisonSteps() {
           <div className="inputGroup">
             <p className="body1 no-margin">
               <label>Fuel cost per litre </label>
-              <Input value="100" currency suffix="[3]" />
+              <Input
+                onChange={setFuelPrice}
+                value={fuelPrice}
+                currency
+                suffix="[3]"
+              />
             </p>
           </div>
           <div className="inputGroup">
             <p className="body1 no-margin">
               <label>Km's driven per year: </label>
-              <Input value="100" suffix="[4]" />
+              <Input onChange={setKmsPerYear} value={kmsPerYear} suffix="[4]" />
             </p>
           </div>
         </div>
@@ -45,15 +171,9 @@ export function ComparisonSteps() {
           <span className="body1">I want to compare </span>
           <div className="compareVehicle">
             <Select
-              options={[
-                { value: "1", label: "RAV4" },
-                { value: "2", label: "Corolla" },
-                { value: "3", label: "Prius" },
-                { value: "4", label: "Prius C" },
-                { value: "5", label: "Prius V" }
-              ]}
-              value="1"
-              onChange={() => {}}
+              options={modelOptions}
+              value={selectedModel}
+              onChange={changeModel}
             />
           </div>
           <span className="body1">vehicles</span>
@@ -64,15 +184,9 @@ export function ComparisonSteps() {
             <div className="comparisonVehicle">
               <Select
                 className="comparisonVehicleDropdown"
-                options={[
-                  { value: "1", label: "RAV4" },
-                  { value: "2", label: "Corolla" },
-                  { value: "3", label: "Prius" },
-                  { value: "4", label: "Prius C" },
-                  { value: "5", label: "Prius V" }
-                ]}
-                value="1"
-                onChange={() => {}}
+                options={comparisonOptions}
+                value={selectedComparisonVehicle.grade}
+                onChange={handleComparisonChange}
               />
             </div>
           </div>
@@ -81,34 +195,23 @@ export function ComparisonSteps() {
             <div className="comparisonVehicle">
               <Select
                 className="comparisonVehicleDropdown"
-                options={[
-                  { value: "1", label: "RAV4" },
-                  { value: "2", label: "Corolla" },
-                  { value: "3", label: "Prius" },
-                  { value: "4", label: "Prius C" },
-                  { value: "5", label: "Prius V" }
-                ]}
-                value="1"
-                onChange={() => {}}
+                options={hybridOptions}
+                value={selectedHybridVehicle.grade}
+                onChange={handleHybridChange}
               />
             </div>
           </div>
         </div>
 
-        <div className="text-center">
-          <div className="inputGroup">
-            <div className="comparisonVehicle">
-              <div className="carPicture">
-                <img src={Car2} />
-              </div>
-            </div>
+        <div className="carPictureContainer">
+          <div className="carPicture left">
+            <img src={Car2} />
           </div>
-          <div className="inputGroup">
-            <div className="comparisonVehicle">
-              <div className="carPicture">
-                <img src={Car1} />
-              </div>
-            </div>
+          <div className="carPicture right">
+            <img src={Car1} />
+          </div>
+          <div className="hiddenContainer">
+            <img src={Car2} />
           </div>
         </div>
       </ComparisonStep>

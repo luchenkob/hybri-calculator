@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { ComparisonSteps } from "../ComparisonSteps";
 import { HybridSaving } from "../HybridSaving";
 
 export function CompareHybrid() {
+  const [compareData, setCompareData] = useState<any>(null);
+  // console.log(DefaultData);
   return (
     <div>
-      <ComparisonSteps />
-      <HybridSaving />
+      <ComparisonSteps onChange={setCompareData} />
+      <HybridSaving compareData={compareData} />
     </div>
   );
 }
