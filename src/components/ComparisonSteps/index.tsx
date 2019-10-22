@@ -1,14 +1,7 @@
 import React, { ReactNode, useState, useEffect } from "react";
 import { Input, Select } from "@hybrid/components";
-import { DefaultData } from "../../assets/data/DefaultData";
 import Car1 from "../../assets/images/car1.png";
 import Car2 from "../../assets/images/car2.png";
-
-const { defaultParameters, models } = DefaultData;
-const defaultModelsOptions = models.map(item => ({
-  value: item.id,
-  label: item.lineName
-}));
 
 const tranformSubModelToOptions = (options: any) => {
   return options.map((item: any) => ({
@@ -32,11 +25,18 @@ function ComparisonStep({
 }
 
 export function ComparisonSteps({
-  onChange
+  onChange,
+  defaultParameters,
+  defaultModelsOptions,
+  models,
+  initialSelectedModel
 }: {
   onChange: (data: any) => void;
+  defaultParameters: any;
+  defaultModelsOptions: any;
+  models: any;
+  initialSelectedModel?: string;
 }) {
-  const [modelData, setModelData] = useState(DefaultData);
   const [fuelPrice, setFuelPrice] = useState<string>(
     defaultParameters.fuelPrice
   );
@@ -52,11 +52,13 @@ export function ComparisonSteps({
   const [selectedHybridVehicle, setSelectedHybridVehicle] = useState<any>({
     grade: null
   });
-  const [selectedModel, setSelectedModel] = useState<string | null>(null);
+  const [selectedModel, setSelectedModel] = useState<string | undefined>(
+    initialSelectedModel
+  );
   const [selectedModelObject, setSelectedModelObject] = useState<any>(null);
 
   const changeModel = (value: string) => {
-    const modelList = modelData.models.filter((item: any) => item.id === value);
+    const modelList = models.filter((item: any) => item.id === value);
     if (modelList.length > 0) {
       setComparisonOptions(tranformSubModelToOptions(modelList[0].comparison));
       setHybridOptions(tranformSubModelToOptions(modelList[0].hybrid));
@@ -121,7 +123,7 @@ export function ComparisonSteps({
       travelledDistance:
         data.hybrid.travelledDistance - data.comparsion.travelledDistance
     };
-    onChange({ ...data, saving });
+    onChange({ ...data, saving, selectedModel });
   };
   useEffect(() => {
     if (
@@ -136,7 +138,6 @@ export function ComparisonSteps({
         selectedComparisonVehicle,
         selectedHybridVehicle
       );
-      console.log("HE");
     }
   }, [selectedComparisonVehicle, selectedHybridVehicle, fuelPrice, kmsPerYear]);
 

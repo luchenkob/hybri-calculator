@@ -4,11 +4,10 @@ import { HybridSaving } from "../HybridSaving";
 
 export function CompareHybrid() {
   const [compareData, setCompareData] = useState<any>(null);
-  // console.log(DefaultData);
   return (
     <div>
-      <ComparisonSteps onChange={setCompareData} />
-      <HybridSaving compareData={compareData} />
+      {/* <ComparisonSteps onChange={setCompareData} />
+      <HybridSaving compareData={compareData} /> */}
     </div>
   );
 }

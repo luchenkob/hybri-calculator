@@ -50,7 +50,6 @@ function CompareTable({ compareData }: { compareData: any }) {
 }
 
 export function HybridSaving({ compareData }: { compareData: any }) {
-  console.log(compareData);
   return (
     <>
       {compareData && (

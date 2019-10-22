@@ -1,19 +1,13 @@
 import React from "react";
 import logo from "./logo.svg";
-import { Header, Footer } from "@hybrid/layouts";
-import { Contact, CompareHybrid } from "@hybrid/components";
+import { Comparison } from "./pages/Comparison";
 import "./App.css";
+import { Route } from "react-router";
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <Header />
-      {/* <main>Main Component there</main> */}
-      <main>
-        <CompareHybrid />
-      </main>
-      <Contact />
-      <Footer />
+      <Route path="/:id?" component={Comparison} />
     </div>
   );
 };
