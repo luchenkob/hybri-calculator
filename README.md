@@ -1,4 +1,8 @@
 # Hybrid Calculator
 
-Install Project : npm run install
-Run Project : npm start
+## How To Run the App.
+
+```
+yarn install
+yarn start
+```

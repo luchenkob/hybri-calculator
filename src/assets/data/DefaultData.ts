@@ -9,7 +9,10 @@ export const DefaultData = {
           productionTime: "01/09/2019",
           grade: "Ascent Sport",
           litresPer100Km: "4.2",
-          gramsCarbonPerKm: "97"
+          gramsCarbonPerKm: "97",
+          engineFuel:"1.8L Hybrid", 
+          drivetrain:"2WD",
+          transmission:"CVT"
         }
       ],
       comparison: [
@@ -35,7 +38,10 @@ export const DefaultData = {
           productionTime: "01/01/2019",
           grade: "GX 2WD CVT",
           litresPer100Km: "4.7",
-          gramsCarbonPerKm: "107"
+          gramsCarbonPerKm: "107",
+          engineFuel:"2.5L Hybrid",
+          drivetrain:"AWD", 
+          transmission:"CVT"
         }
       ],
       comparison: [
@@ -61,7 +67,10 @@ export const DefaultData = {
           productionTime: "01/08/2018",
           grade: "Ascent Sport",
           litresPer100Km: "4.2",
-          gramsCarbonPerKm: "96"
+          gramsCarbonPerKm: "96",
+          engineFuel:"2.5L Hybrid", //2.5L Hybrid
+          drivetrain: "2WD", //2WD
+          transmission: "CVT" //Auto CVT
         }
       ],
       comparison: [
