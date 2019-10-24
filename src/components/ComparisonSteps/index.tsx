@@ -57,6 +57,14 @@ export function ComparisonSteps({
   );
   const [selectedModelObject, setSelectedModelObject] = useState<any>(null);
 
+  useEffect(() => {
+    const modelList = models.filter(
+      (item: any) => item.id === initialSelectedModel
+    );
+    setComparisonOptions(tranformSubModelToOptions(modelList[0].comparison));
+    setHybridOptions(tranformSubModelToOptions(modelList[0].hybrid));
+  }, []);
+
   const changeModel = (value: string) => {
     const modelList = models.filter((item: any) => item.id === value);
     if (modelList.length > 0) {
