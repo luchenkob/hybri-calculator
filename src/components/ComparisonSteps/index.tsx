@@ -182,7 +182,6 @@ export function ComparisonSteps({
   };
 
   useEffect(() => {
-    console.log("test");
     runCalculateData();
   }, [selectedComparisonVehicle, selectedHybridVehicle, fuelPrice, kmsPerYear]);
 
