@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { useOutsideClick } from "@hybrid/hooks";
 
 export function Select({
@@ -20,6 +20,9 @@ export function Select({
     (item: any) => compValue && item.value === compValue
   );
 
+  useEffect(() => {
+    setCompValue(value);
+  }, [value]);
   useOutsideClick(ref, () => {
     setOpen(false);
   });

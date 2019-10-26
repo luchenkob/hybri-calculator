@@ -7,6 +7,10 @@ export function Comparison() {
   const [compareData, setCompareData] = useState<any>(null);
   const [defaultParameters, setDefaultParameters] = useState<any>(null);
   const [defaultModelsOptions, setDefaultModelsOptions] = useState<any>(null);
+  const [defaultComparisonValue, setDefaultComparisonValue] = useState<any>(
+    null
+  );
+  const [defaultHybridValue, setDefaultHybridValue] = useState<any>(null);
   const [disclaimersInfo, setDisclaimersInfo] = useState<any>(null);
   const [models, setModels] = useState<any>(null);
 
@@ -15,6 +19,49 @@ export function Comparison() {
   );
 
   let { id } = useParams();
+
+  const calculateData = (
+    fuelPrice: string,
+    kmsPerYear: string,
+    selectedComparisonVehicle: any,
+    selectedHybridVehicle: any
+  ) => {
+    const { litresPer100Km, gramsCarbonPerKm } = selectedComparisonVehicle;
+    const {
+      litresPer100Km: hybridLitresPer100Km,
+      gramsCarbonPerKm: hybridGramsCarbonPerKm
+    } = selectedHybridVehicle;
+
+    const data = {
+      comparsion: {
+        fuelPrice:
+          (parseInt(fuelPrice) *
+            parseInt(kmsPerYear) *
+            parseInt(litresPer100Km)) /
+          100,
+        co2: (parseInt(gramsCarbonPerKm) * parseInt(kmsPerYear)) / 1000000,
+        travelledDistance: parseInt(kmsPerYear)
+      },
+      hybrid: {
+        fuelPrice:
+          (parseInt(fuelPrice) * parseInt(kmsPerYear) * hybridLitresPer100Km) /
+          100,
+        co2:
+          (parseInt(hybridGramsCarbonPerKm) * parseInt(kmsPerYear)) / 1000000,
+        travelledDistance:
+          (parseInt(litresPer100Km) / parseInt(hybridLitresPer100Km)) *
+          parseInt(kmsPerYear)
+      }
+    };
+    const saving = {
+      fuelPrice: data.comparsion.fuelPrice - data.hybrid.fuelPrice,
+      co2: data.comparsion.co2 - data.hybrid.co2,
+      travelledDistance:
+        data.hybrid.travelledDistance - data.comparsion.travelledDistance
+    };
+
+    setCompareData({ ...data, saving });
+  };
 
   useEffect(() => {
     fetch("vehicle-data.json", {
@@ -41,6 +88,16 @@ export function Comparison() {
         setInitialSelectedModelId(initialSelectedModelId);
         setDefaultParameters(defaultParameters);
         setDefaultModelsOptions(defaultModelsOptions);
+
+        setDefaultComparisonValue(models[0].comparison[0].materialCode);
+        setDefaultHybridValue(models[0].hybrid[0]);
+
+        calculateData(
+          defaultParameters.fuelPrice,
+          defaultParameters.kmsPerYear,
+          models[0].comparison[0],
+          models[0].hybrid[0]
+        );
       });
   }, []);
 
@@ -52,7 +109,7 @@ export function Comparison() {
     setDisclaimersInfo(disclaimersInfo);
     setCompareData(data);
   };
-  console.log(initialSelectedModelId);
+
   return (
     <div>
       <Header />
@@ -64,6 +121,8 @@ export function Comparison() {
             defaultParameters={defaultParameters}
             defaultModelsOptions={defaultModelsOptions}
             onChange={updateData}
+            defaultComparisonValue={defaultComparisonValue}
+            defaultHybridValue={defaultHybridValue}
           />
           <HybridSaving compareData={compareData} />
           <Contact />

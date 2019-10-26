@@ -5,7 +5,7 @@ import Car2 from "../../assets/images/car2.png";
 
 const tranformSubModelToOptions = (options: any) => {
   return options.map((item: any) => ({
-    value: item.grade,
+    value: item.materialCode,
     label: item.grade
   }));
 };
@@ -28,12 +28,16 @@ export function ComparisonSteps({
   onChange,
   defaultParameters,
   defaultModelsOptions,
+  defaultHybridValue,
+  defaultComparisonValue,
   models,
   initialSelectedModel
 }: {
   onChange: (data: any) => void;
   defaultParameters: any;
   defaultModelsOptions: any;
+  defaultHybridValue: string;
+  defaultComparisonValue: string;
   models: any;
   initialSelectedModel?: string;
 }) {
@@ -48,9 +52,20 @@ export function ComparisonSteps({
   const [hybridOptions, setHybridOptions] = useState<any>([]);
   const [selectedComparisonVehicle, setSelectedComparisonVehicle] = useState<
     any
-  >({ grade: null });
+  >({
+    materialCode: null
+  });
+  const [
+    selectedComparisonVehicleValue,
+    setSelectedComparisonVehicleValue
+  ] = useState<any>(defaultComparisonValue);
+
+  const [selectedHybridVehicleValue, setSelectedHybridVehicleValue] = useState<
+    any
+  >(defaultHybridValue);
+
   const [selectedHybridVehicle, setSelectedHybridVehicle] = useState<any>({
-    grade: null
+    materialCode: null
   });
   const [selectedModel, setSelectedModel] = useState<string | undefined>(
     initialSelectedModel
@@ -61,9 +76,25 @@ export function ComparisonSteps({
     const modelList = models.filter(
       (item: any) => item.id === initialSelectedModel
     );
+    setSelectedModelObject(modelList[0]);
     setComparisonOptions(tranformSubModelToOptions(modelList[0].comparison));
     setHybridOptions(tranformSubModelToOptions(modelList[0].hybrid));
+
+    setSelectedComparisonVehicleValue(modelList[0].comparison[0].materialCode);
+    setSelectedHybridVehicleValue(modelList[0].hybrid[0].materialCode);
   }, []);
+
+  useEffect(() => {
+    if (selectedModelObject) {
+      setSelectedComparisonVehicleValue(
+        selectedModelObject.comparison[0].materialCode
+      );
+      setSelectedHybridVehicleValue(selectedModelObject.hybrid[0].materialCode);
+
+      setSelectedComparisonVehicle(selectedModelObject.comparison[0]);
+      setSelectedHybridVehicle(selectedModelObject.hybrid[0]);
+    }
+  }, [selectedModel]);
 
   const changeModel = (value: string) => {
     const modelList = models.filter((item: any) => item.id === value);
@@ -133,7 +164,8 @@ export function ComparisonSteps({
     };
     onChange({ ...data, saving, selectedModel });
   };
-  useEffect(() => {
+
+  const runCalculateData = () => {
     if (
       fuelPrice &&
       kmsPerYear &&
@@ -147,6 +179,11 @@ export function ComparisonSteps({
         selectedHybridVehicle
       );
     }
+  };
+
+  useEffect(() => {
+    console.log("test");
+    runCalculateData();
   }, [selectedComparisonVehicle, selectedHybridVehicle, fuelPrice, kmsPerYear]);
 
   return (
@@ -194,7 +231,7 @@ export function ComparisonSteps({
               <Select
                 className="comparisonVehicleDropdown"
                 options={comparisonOptions}
-                value={selectedComparisonVehicle.grade}
+                value={selectedComparisonVehicleValue}
                 onChange={handleComparisonChange}
               />
             </div>
@@ -205,7 +242,7 @@ export function ComparisonSteps({
               <Select
                 className="comparisonVehicleDropdown"
                 options={hybridOptions}
-                value={selectedHybridVehicle.grade}
+                value={selectedHybridVehicleValue}
                 onChange={handleHybridChange}
               />
             </div>
