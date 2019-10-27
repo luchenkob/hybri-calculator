@@ -1,7 +1,12 @@
 import React, { ReactNode, useState, useEffect } from "react";
 import { Input, Select } from "@hybrid/components";
+import moment from "moment";
+import { useWindowDimensions } from "@hybrid/hooks";
 import Car1 from "../../assets/images/car1.png";
 import Car2 from "../../assets/images/car2.png";
+
+const angle = "000";
+const file_extension = "png";
 
 const tranformSubModelToOptions = (options: any) => {
   return options.map((item: any) => ({
@@ -41,6 +46,7 @@ export function ComparisonSteps({
   models: any;
   initialSelectedModel?: string;
 }) {
+  const { height, width } = useWindowDimensions();
   const [fuelPrice, setFuelPrice] = useState<string>(
     defaultParameters.fuelPrice
   );
@@ -72,6 +78,21 @@ export function ComparisonSteps({
   );
   const [selectedModelObject, setSelectedModelObject] = useState<any>(null);
 
+  const [selectedHybridVehicleUrl, setSelectedHybridVehicleUrl] = useState<any>(
+    null
+  );
+  const [
+    selectedComparisonVehicleUrl,
+    setSelectedComparisonVehicleUrl
+  ] = useState<any>(null);
+  const [loadingImage, setLoadingImage] = useState<any>(true);
+  const [loadingHybridVehicelImage, setLoadingHybridVehicelImage] = useState<
+    boolean
+  >(true);
+  const [
+    loadingComparisonVehicelImage,
+    setLoadingComparisonVehicelImage
+  ] = useState<boolean>(true);
   useEffect(() => {
     const modelList = models.filter(
       (item: any) => item.id === initialSelectedModel
@@ -82,9 +103,15 @@ export function ComparisonSteps({
 
     setSelectedComparisonVehicleValue(modelList[0].comparison[0].materialCode);
     setSelectedHybridVehicleValue(modelList[0].hybrid[0].materialCode);
+
+    setSelectedComparisonVehicle(modelList[0].comparison[0]);
+    setSelectedHybridVehicle(modelList[0].hybrid[0]);
   }, []);
 
   useEffect(() => {
+    setLoadingImage(true);
+    setLoadingHybridVehicelImage(true);
+    setLoadingComparisonVehicelImage(true);
     if (selectedModelObject) {
       setSelectedComparisonVehicleValue(
         selectedModelObject.comparison[0].materialCode
@@ -95,6 +122,61 @@ export function ComparisonSteps({
       setSelectedHybridVehicle(selectedModelObject.hybrid[0]);
     }
   }, [selectedModel]);
+
+  const pickSuitableDimension = (width: number) => {
+    if (width >= 940) {
+      return "1920x1080";
+    }
+    if (width >= 907) {
+      return "940x529";
+    }
+    if (width >= 519) {
+      return "907x510";
+    }
+    if (width >= 260) {
+      return "519x292";
+    }
+    return "260x146";
+  };
+
+  useEffect(() => {
+    if (selectedModelObject) {
+      var date = moment(selectedHybridVehicle.productionTime, "DD-MM-YYYY");
+      const production_year = date.get("year");
+      const production_month = date.format("MM");
+      const suitableDimension = pickSuitableDimension(width);
+      const hybridVehicleUrl = `https://services.tmca.rotorint.com/v1/image/vehicle/360s/hi/${suitableDimension}/${production_year}/${production_month}/${selectedHybridVehicle.materialCode}_${angle}.${file_extension}`;
+      setSelectedHybridVehicleUrl(hybridVehicleUrl);
+
+      var myImg = new Image();
+      myImg.onload = function() {
+        setTimeout(() => {
+          setLoadingHybridVehicelImage(false);
+        }, 2500);
+      };
+      myImg.src = hybridVehicleUrl;
+    }
+  }, [selectedHybridVehicleValue]);
+
+  useEffect(() => {
+    if (selectedModelObject) {
+      var date = moment(selectedComparisonVehicle.productionTime, "DD-MM-YYYY");
+      const production_year = date.get("year");
+      const production_month = date.format("MM");
+      const suitableDimension = pickSuitableDimension(width);
+
+      const comparisonVehicleUrl = `https://services.tmca.rotorint.com/v1/image/vehicle/360s/hi/${suitableDimension}/${production_year}/${production_month}/${selectedComparisonVehicle.materialCode}_${angle}.${file_extension}`;
+      setSelectedComparisonVehicleUrl(comparisonVehicleUrl);
+
+      var myImg = new Image();
+      myImg.onload = function() {
+        setTimeout(() => {
+          setLoadingComparisonVehicelImage(false);
+        }, 2500);
+      };
+      myImg.src = comparisonVehicleUrl;
+    }
+  }, [selectedComparisonVehicle]);
 
   const changeModel = (value: string) => {
     const modelList = models.filter((item: any) => item.id === value);
@@ -108,18 +190,23 @@ export function ComparisonSteps({
 
   const handleComparisonChange = (value: any) => {
     const comparisonList = selectedModelObject.comparison.filter(
-      (item: any) => item.grade === value
+      (item: any) => item.materialCode === value
     );
+    setLoadingComparisonVehicelImage(true);
     if (comparisonList.length > 0) {
       setSelectedComparisonVehicle(comparisonList[0]);
+      setSelectedComparisonVehicleValue(comparisonList[0].materialCode);
     }
   };
+
   const handleHybridChange = (value: any) => {
     const hybridList = selectedModelObject.hybrid.filter(
-      (item: any) => item.grade === value
+      (item: any) => item.materialCode === value
     );
+    setLoadingHybridVehicelImage(true);
     if (hybridList.length > 0) {
       setSelectedHybridVehicle(hybridList[0]);
+      setSelectedHybridVehicleValue(hybridList[0].materialCode);
     }
   };
 
@@ -187,6 +274,9 @@ export function ComparisonSteps({
 
   return (
     <div className="ComparisonStepsSection">
+      <div>
+        {height} -{width}
+      </div>
       <ComparisonStep index={1}>
         <p className="body1 text-center no-margin">
           Personalise your driving information to estimate your hybrid saving
@@ -250,13 +340,25 @@ export function ComparisonSteps({
 
         <div className="carPictureContainer">
           <div className="carPicture left">
-            <img src={Car2} />
+            {loadingComparisonVehicelImage ? (
+              <div className="loadingBox">
+                <div className="lds-dual-ring"></div>
+              </div>
+            ) : (
+              <img src={selectedComparisonVehicleUrl} />
+            )}
           </div>
           <div className="carPicture right">
-            <img src={Car1} />
+            {loadingHybridVehicelImage ? (
+              <div className="loadingBox">
+                <div className="lds-dual-ring"></div>
+              </div>
+            ) : (
+              <img src={selectedHybridVehicleUrl} />
+            )}
           </div>
           <div className="hiddenContainer">
-            <img src={Car2} />
+            <img src={selectedHybridVehicleUrl} />
           </div>
         </div>
       </ComparisonStep>
