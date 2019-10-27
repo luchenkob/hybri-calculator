@@ -88,7 +88,6 @@ export function Comparison() {
         setInitialSelectedModelId(initialSelectedModelId);
         setDefaultParameters(defaultParameters);
         setDefaultModelsOptions(defaultModelsOptions);
-
         setDefaultComparisonValue(models[0].comparison[0].materialCode);
         setDefaultHybridValue(models[0].hybrid[0]);
 

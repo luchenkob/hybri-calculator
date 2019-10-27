@@ -11,7 +11,11 @@ export function Footer({ disclaimersInfo }: { disclaimersInfo: any }) {
         </h4>
         <div className="footerDisclaimerBox">
           {disclaimersInfo &&
-            disclaimersInfo.map((item: any) => <p className="body2">{item}</p>)}
+            disclaimersInfo.map((item: any) => (
+              <p key={item} className="body2">
+                {item}
+              </p>
+            ))}
         </div>
       </div>
     </footer>

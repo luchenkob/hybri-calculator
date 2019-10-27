@@ -42,7 +42,7 @@ export function Input({
     setIsEditting(!isEditting);
   };
   return (
-    <div className="inputContainer" onClick={editHandler}>
+    <span className="inputContainer" onClick={editHandler}>
       <input
         className={isEditting ? "active" : ""}
         ref={inputEl}
@@ -57,7 +57,7 @@ export function Input({
           <sup>{suffix}</sup>
         </span>
       )}
-    </div>
+    </span>
   );
 }
 
