@@ -60,7 +60,7 @@ export function HybridSaving({ compareData }: { compareData: any }) {
               title={<>Estimated Fuel Saving Per Year</>}
               value={
                 <p className="caculationText">
-                  Saving ${compareData.saving.fuelPrice}
+                  Saving ${compareData.savingData.fuelPrice}
                 </p>
               }
             />
@@ -72,7 +72,7 @@ export function HybridSaving({ compareData }: { compareData: any }) {
               }
               value={
                 <p className="caculationText">
-                  {compareData.saving.co2.toFixed(2)} tonnes less
+                  {compareData.savingData.co2.toFixed(2)} tonnes less
                 </p>
               }
             />
@@ -80,7 +80,7 @@ export function HybridSaving({ compareData }: { compareData: any }) {
               title={<>Estimated Extra KM'S Per Year</>}
               value={
                 <p className="caculationText ">
-                  Travel {compareData.saving.travelledDistance}km further
+                  Travel {compareData.savingData.travelledDistance}km further
                 </p>
               }
             />

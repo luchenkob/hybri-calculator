@@ -2,8 +2,7 @@ import React, { ReactNode, useState, useEffect } from "react";
 import { Input, Select } from "@hybrid/components";
 import moment from "moment";
 import { useWindowDimensions } from "@hybrid/hooks";
-import Car1 from "../../assets/images/car1.png";
-import Car2 from "../../assets/images/car2.png";
+import { calculateData } from "../../helper";
 
 const angle = "000";
 const file_extension = "png";
@@ -210,48 +209,6 @@ export function ComparisonSteps({
     }
   };
 
-  const calculateData = (
-    fuelPrice: string,
-    kmsPerYear: string,
-    selectedComparisonVehicle: any,
-    selectedHybridVehicle: any
-  ) => {
-    const { litresPer100Km, gramsCarbonPerKm } = selectedComparisonVehicle;
-    const {
-      litresPer100Km: hybridLitresPer100Km,
-      gramsCarbonPerKm: hybridGramsCarbonPerKm
-    } = selectedHybridVehicle;
-
-    const data = {
-      comparsion: {
-        fuelPrice:
-          (parseInt(fuelPrice) *
-            parseInt(kmsPerYear) *
-            parseInt(litresPer100Km)) /
-          100,
-        co2: (parseInt(gramsCarbonPerKm) * parseInt(kmsPerYear)) / 1000000,
-        travelledDistance: parseInt(kmsPerYear)
-      },
-      hybrid: {
-        fuelPrice:
-          (parseInt(fuelPrice) * parseInt(kmsPerYear) * hybridLitresPer100Km) /
-          100,
-        co2:
-          (parseInt(hybridGramsCarbonPerKm) * parseInt(kmsPerYear)) / 1000000,
-        travelledDistance:
-          (parseInt(litresPer100Km) / parseInt(hybridLitresPer100Km)) *
-          parseInt(kmsPerYear)
-      }
-    };
-    const saving = {
-      fuelPrice: data.comparsion.fuelPrice - data.hybrid.fuelPrice,
-      co2: data.comparsion.co2 - data.hybrid.co2,
-      travelledDistance:
-        data.hybrid.travelledDistance - data.comparsion.travelledDistance
-    };
-    onChange({ ...data, saving, selectedModel });
-  };
-
   const runCalculateData = () => {
     if (
       fuelPrice &&
@@ -259,12 +216,14 @@ export function ComparisonSteps({
       selectedComparisonVehicle.grade &&
       selectedHybridVehicle.grade
     ) {
-      calculateData(
+      const comparisonData = calculateData(
         fuelPrice,
         kmsPerYear,
         selectedComparisonVehicle,
         selectedHybridVehicle
       );
+
+      onChange({ ...comparisonData, selectedModel });
     }
   };
 
@@ -274,9 +233,6 @@ export function ComparisonSteps({
 
   return (
     <div className="ComparisonStepsSection">
-      <div>
-        {height} -{width}
-      </div>
       <ComparisonStep index={1}>
         <p className="body1 text-center no-margin">
           Personalise your driving information to estimate your hybrid saving
