@@ -1,4 +1,5 @@
 import React, { ReactNode, useEffect, useState } from "react";
+import CountUp from "react-countup";
 
 function HybridSavingItem({
   title,
@@ -81,10 +82,7 @@ export function HybridSaving({ compareData }: { compareData: any }) {
               value={
                 <p className="caculationText">
                   Saving $
-                  <AnimationText
-                    isDataChanged={isDataChanged}
-                    text={compareData.savingData.fuelPrice}
-                  />
+                  <CountUp end={parseFloat(compareData.savingData.fuelPrice)} />
                 </p>
               }
             />

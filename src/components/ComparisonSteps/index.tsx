@@ -269,27 +269,29 @@ export function ComparisonSteps({
           </div>
           <span className="body1">vehicles</span>
         </div>
-        <div className="text-center">
-          <div className="inputGroup">
-            <p className="captionText">Comparison vehicle</p>
-            <div className="comparisonVehicle">
-              <Select
-                className="comparisonVehicleDropdown"
-                options={comparisonOptions}
-                value={selectedComparisonVehicleValue}
-                onChange={handleComparisonChange}
-              />
+        <div className="container">
+          <div className="text-center flexBox">
+            <div className="inputGroup flexInput">
+              <p className="captionText">Comparison vehicle</p>
+              <div className="comparisonVehicle">
+                <Select
+                  className="comparisonVehicleDropdown"
+                  options={comparisonOptions}
+                  value={selectedComparisonVehicleValue}
+                  onChange={handleComparisonChange}
+                />
+              </div>
             </div>
-          </div>
-          <div className="inputGroup">
-            <p className="captionText">Hybrid vehicle </p>
-            <div className="comparisonVehicle">
-              <Select
-                className="comparisonVehicleDropdown"
-                options={hybridOptions}
-                value={selectedHybridVehicleValue}
-                onChange={handleHybridChange}
-              />
+            <div className="inputGroup flexInput">
+              <p className="captionText">Hybrid vehicle </p>
+              <div className="comparisonVehicle ">
+                <Select
+                  className="comparisonVehicleDropdown"
+                  options={hybridOptions}
+                  value={selectedHybridVehicleValue}
+                  onChange={handleHybridChange}
+                />
+              </div>
             </div>
           </div>
         </div>
