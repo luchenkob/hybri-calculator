@@ -345,6 +345,15 @@ button {
   display: none;
 }
 
+.animationText {
+  opacity: 1;
+  transition: all 0.5s linear;
+}
+
+.animationText.active {
+  opacity: 0;
+}
+
 @media (max-width: 767px) {
 
   /* //CSS */

@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 
 function HybridSavingItem({
   title,
@@ -49,7 +49,27 @@ function CompareTable({ compareData }: { compareData: any }) {
   );
 }
 
+interface AnimationText {
+  text: string;
+  isDataChanged: boolean;
+}
+const AnimationText = ({ text, isDataChanged }: AnimationText) => {
+  return (
+    <span className={isDataChanged ? "animationText active" : "animationText"}>
+      {!isDataChanged && text}
+    </span>
+  );
+};
 export function HybridSaving({ compareData }: { compareData: any }) {
+  const [isDataChanged, setIsDataChanged] = useState(false);
+
+  useEffect(() => {
+    setIsDataChanged(true);
+    setTimeout(() => {
+      setIsDataChanged(false);
+    }, 500);
+  }, [compareData]);
+
   return (
     <>
       {compareData && (
@@ -60,7 +80,11 @@ export function HybridSaving({ compareData }: { compareData: any }) {
               title={<>Estimated Fuel Saving Per Year</>}
               value={
                 <p className="caculationText">
-                  Saving ${compareData.savingData.fuelPrice}
+                  Saving $
+                  <AnimationText
+                    isDataChanged={isDataChanged}
+                    text={compareData.savingData.fuelPrice}
+                  />
                 </p>
               }
             />
@@ -72,7 +96,11 @@ export function HybridSaving({ compareData }: { compareData: any }) {
               }
               value={
                 <p className="caculationText">
-                  {compareData.savingData.co2} tonnes less
+                  <AnimationText
+                    isDataChanged={isDataChanged}
+                    text={compareData.savingData.co2}
+                  />{" "}
+                  tonnes less
                 </p>
               }
             />
@@ -80,7 +108,12 @@ export function HybridSaving({ compareData }: { compareData: any }) {
               title={<>Estimated Extra KM'S Per Year</>}
               value={
                 <p className="caculationText ">
-                  Travel {compareData.savingData.travelledDistance}km further
+                  Travel{" "}
+                  <AnimationText
+                    isDataChanged={isDataChanged}
+                    text={compareData.savingData.travelledDistance}
+                  />{" "}
+                  km further
                 </p>
               }
             />
