@@ -146,6 +146,7 @@ export function ComparisonSteps({
       const suitableDimension = pickSuitableDimension(width);
       const hybridVehicleUrl = `https://services.tmca.rotorint.com/v1/image/vehicle/360s/hi/${suitableDimension}/${production_year}/${production_month}/${selectedHybridVehicle.materialCode}_${angle}.${file_extension}`;
       setSelectedHybridVehicleUrl(hybridVehicleUrl);
+      setLoadingHybridVehicelImage(true);
 
       var myImg = new Image();
       myImg.onload = function() {
@@ -159,6 +160,7 @@ export function ComparisonSteps({
 
   useEffect(() => {
     if (selectedModelObject) {
+      setLoadingComparisonVehicelImage(true);
       var date = moment(selectedComparisonVehicle.productionTime, "DD-MM-YYYY");
       const production_year = date.get("year");
       const production_month = date.format("MM");
@@ -191,7 +193,6 @@ export function ComparisonSteps({
     const comparisonList = selectedModelObject.comparison.filter(
       (item: any) => item.materialCode === value
     );
-    setLoadingComparisonVehicelImage(true);
     if (comparisonList.length > 0) {
       setSelectedComparisonVehicle(comparisonList[0]);
       setSelectedComparisonVehicleValue(comparisonList[0].materialCode);
@@ -202,7 +203,6 @@ export function ComparisonSteps({
     const hybridList = selectedModelObject.hybrid.filter(
       (item: any) => item.materialCode === value
     );
-    setLoadingHybridVehicelImage(true);
     if (hybridList.length > 0) {
       setSelectedHybridVehicle(hybridList[0]);
       setSelectedHybridVehicleValue(hybridList[0].materialCode);
