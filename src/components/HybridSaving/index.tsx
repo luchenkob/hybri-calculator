@@ -72,7 +72,7 @@ export function HybridSaving({ compareData }: { compareData: any }) {
               }
               value={
                 <p className="caculationText">
-                  {compareData.savingData.co2.toFixed(2)} tonnes less
+                  {compareData.savingData.co2} tonnes less
                 </p>
               }
             />
