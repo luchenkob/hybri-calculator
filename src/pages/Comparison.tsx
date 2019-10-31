@@ -56,7 +56,7 @@ export function Comparison() {
         });
     };
     fetchModelId(id);
-  }, []);
+  }, [id]);
 
   const updateData = (data: any) => {
     const { selectedModel } = data;

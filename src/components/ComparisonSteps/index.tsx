@@ -103,7 +103,7 @@ export function ComparisonSteps({
 
     setSelectedComparisonVehicle(modelList[0].comparison[0]);
     setSelectedHybridVehicle(modelList[0].hybrid[0]);
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     setLoadingHybridVehicelImage(true);
@@ -117,7 +117,7 @@ export function ComparisonSteps({
       setSelectedComparisonVehicle(selectedModelObject.comparison[0]);
       setSelectedHybridVehicle(selectedModelObject.hybrid[0]);
     }
-  }, [selectedModel]);
+  }, [selectedModel]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const pickSuitableDimension = (width: number) => {
     if (width >= 940) {
@@ -153,7 +153,7 @@ export function ComparisonSteps({
       };
       myImg.src = hybridVehicleUrl;
     }
-  }, [selectedHybridVehicleValue]);
+  }, [selectedHybridVehicleValue]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (selectedModelObject) {
@@ -174,7 +174,7 @@ export function ComparisonSteps({
       };
       myImg.src = comparisonVehicleUrl;
     }
-  }, [selectedComparisonVehicle]);
+  }, [selectedComparisonVehicle]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const changeModel = (value: string) => {
     const modelList = models.filter((item: any) => item.id === value);
@@ -205,7 +205,6 @@ export function ComparisonSteps({
       setSelectedHybridVehicleValue(hybridList[0].materialCode);
     }
   };
-
   const runCalculateData = () => {
     if (
       fuelPrice &&
@@ -223,10 +222,9 @@ export function ComparisonSteps({
       onChange({ ...comparisonData, selectedModel });
     }
   };
-
   useEffect(() => {
     runCalculateData();
-  }, [selectedComparisonVehicle, selectedHybridVehicle, fuelPrice, kmsPerYear]);
+  }, [selectedComparisonVehicle, selectedHybridVehicle, fuelPrice, kmsPerYear]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="ComparisonStepsSection">
