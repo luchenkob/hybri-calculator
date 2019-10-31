@@ -321,6 +321,8 @@ button {
 }
 
 .carPictureContainer {
+  width: 100%;
+  overflow: hidden;
   margin-top: 40px;
   max-width: 960px;
   display: flex;
