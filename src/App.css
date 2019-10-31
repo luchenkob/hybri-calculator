@@ -91,13 +91,11 @@ footer {
 }
 
 .hybridSavingSection {
-  padding: 65px 20px;
   background: white;
 }
 
 .hybridSavingContainer {
-  max-width: 810px;
-  padding-bottom: 30px;
+  padding: 65px 20px 15px;
 }
 
 .compareTableContainer {
@@ -410,8 +408,7 @@ button {
     display: block;
   }
 
-  .ComparisonStepsSection,
-  .hybridSavingSection {
+  .ComparisonStepsSection {
     padding: 48px 32px 0;
   }
 
