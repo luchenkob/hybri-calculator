@@ -17,15 +17,11 @@ export function Input({
 
   useEffect(() => {}, [inputEl]);
 
-  const keyPressHandler = (e: any) => {
-    // if (e.charCode == 46 || (e.charCode >= 48 && e.charCode <= 57)) {
-    // setValue(e.target.value);
-    // onChange(e.target.value);
-    // }
-  };
   const onChangeHandler = (e: any) => {
-    setValue(e.target.value);
-    onChange(e.target.value);
+    if (Number(e.target.value) && Number(e.target.value) > 0) {
+      setValue(Number(e.target.value));
+      onChange(e.target.value);
+    }
   };
 
   const onBlur = (e: any) => {
@@ -55,7 +51,6 @@ export function Input({
         type="text"
         value={inputValue}
         onChange={onChangeHandler}
-        onKeyPress={keyPressHandler}
         onBlur={onBlur}
       />
       {!isEditting && (
