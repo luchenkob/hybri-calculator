@@ -7,22 +7,13 @@
 
 @font-face {
   font-family: "ToyotaType";
-  src: url("./assets/fonts/ToyotaType-Black.ttf") format("truetype"),
-    url("./assets/fonts/ToyotaType-BlackIt.ttf") format("truetype"),
-    url("./assets/fonts/ToyotaType-Bold.ttf") format("truetype"),
-    url("./assets/fonts/ToyotaType-BoldIt.ttf") format("truetype"),
-    url("./assets/fonts/ToyotaType-Book.ttf") format("truetype"),
-    url("./assets/fonts/ToyotaType-BookIt.ttf") format("truetype"),
-    url("./assets/fonts/ToyotaType-Light.ttf") format("truetype"),
-    url("./assets/fonts/ToyotaType-LightIt.ttf") format("truetype"),
-    url("./assets/fonts/ToyotaType-Regular.ttf") format("truetype"),
-    url("./assets/fonts/ToyotaType-RegularIt.ttf") format("truetype"),
-    url("./assets/fonts/ToyotaType-Semibold.ttf") format("truetype"),
-    url("./assets/fonts/ToyotaType-SemiboldIt.ttf") format("truetype");
+  src: url("./assets/fonts/ToyotaType-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
 }
 
 .App {
-  font-family: " ToyotaType", "Arial", "Helvetica", sans-serif;
+  font-family: "ToyotaType", "Arial", "Helvetica", sans-serif;
   color: var(--color-dark);
   padding: 0 0 80px;
 }
@@ -95,7 +86,7 @@ footer {
 }
 
 .hybridSavingContainer {
-  padding: 65px 20px 15px;
+  padding: 65px 32px 15px;
 }
 
 .compareTableContainer {
@@ -106,7 +97,7 @@ footer {
 
 .compareTableContainer>div {
   flex: 1;
-  margin: 0 20px;
+  margin: 0 32px;
 }
 
 .contactContainer {
@@ -300,7 +291,7 @@ button {
 
 .inputGroup {
   display: inline-block;
-  margin: 50px 20px 0;
+  margin: 50px 32px 0;
 }
 
 .arrowSign {
@@ -351,7 +342,8 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 300px;
+  min-width: 600px;
+  height: 300px;
 
 }
 
@@ -378,10 +370,38 @@ button {
 
 .fuel-text-area {
   text-align: right;
+  flex: 6;
 }
 
 .km-text-area {
   text-align: left;
+  flex: 7;
+}
+
+.carPictureContainer {
+  position: relative;
+  display: flex;
+}
+
+.carPicture.left img,
+.carPicture.left .loadingBox {
+  position: absolute;
+  left: -15%;
+}
+
+.carPicture.right img,
+.carPicture.right .loadingBox {
+  position: absolute;
+  right: -15%;
+}
+
+.hiddenContainer {
+  display: block;
+}
+
+.hiddenContainer img {
+  opacity: 0;
+  width: 600px;
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
@@ -404,6 +424,10 @@ button {
 @media (max-width: 767px) {
 
   /* //CSS */
+  .hybridSavingContainer {
+    padding: 65px 32px 15px;
+  }
+
   .flexBox {
     display: block;
   }
@@ -498,8 +522,9 @@ button {
   }
 
   .hiddenContainer img,
-  .carPicture img {
-    width: 300px;
+  .carPicture img,
+  .loadingBox {
+    width: 450px;
   }
 
   .carPictureContainer {
@@ -507,14 +532,16 @@ button {
     display: flex;
   }
 
-  .carPicture.left img {
+  .carPicture.left img,
+  .carPicture.left .loadingBox {
     position: absolute;
-    left: -10%;
+    left: -20%;
   }
 
-  .carPicture.right img {
+  .carPicture.right img,
+  .carPicture.right .loadingBox {
     position: absolute;
-    right: -10%;
+    right: -20%;
   }
 
   .hiddenContainer {
@@ -559,48 +586,68 @@ button {
 
 
   .hiddenContainer img,
-  .carPicture img {
-    width: 250px;
+  .carPicture img,
+  .loadingBox {
+    width: 450px;
   }
 
-  .carPicture.left img {
+  .carPicture.left img,
+  .carPicture.left .loadingBox {
     position: absolute;
-    left: -20%;
+    left: -40%;
   }
 
-  .carPicture.right img {
+  .carPicture.right img,
+  .carPicture.right .loadingBox {
     position: absolute;
-    right: -20%;
+    right: -40%;
   }
 
   .carPictureContainer {
     justify-content: space-between;
   }
 
-  .loadingBox {
-    min-width: 200px;
+  /* .loadingBox {
+    min-width: 450px;
+  } */
+}
+
+@media (max-width: 375px) {
+  .comparisonStep {
+    margin-bottom: 40px;
+  }
+
+  .ComparisonStepsSection {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+
+  .hybridSavingContainer {
+    padding-left: 25px;
+    padding-right: 25px;
   }
 }
 
 @media (max-width: 400px) {
 
+
   .loadingBox {
-    min-width: 150px;
+    min-width: 450px;
   }
 
   .hiddenContainer img,
   .carPicture img {
-    width: 180px;
+    width: 450px;
   }
 
   .carPicture.left img {
     position: absolute;
-    left: -20%;
+    left: -60%;
   }
 
   .carPicture.right img {
     position: absolute;
-    right: -20%;
+    right: -60%;
   }
 }
 

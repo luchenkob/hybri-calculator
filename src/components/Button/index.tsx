@@ -16,7 +16,7 @@ export function Button({
 }) {
   return (
     <button className={className}>
-      {iconType ? <img src={iconType} /> : children}
+      {iconType ? <img src={iconType} alt={iconType} /> : children}
     </button>
   );
 }

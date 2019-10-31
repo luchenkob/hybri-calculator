@@ -45,14 +45,13 @@ export function ComparisonSteps({
   models: any;
   initialSelectedModel?: string;
 }) {
-  const { height, width } = useWindowDimensions();
+  const { width } = useWindowDimensions();
   const [fuelPrice, setFuelPrice] = useState<string>(
     defaultParameters.fuelPrice
   );
   const [kmsPerYear, setKmsPerYear] = useState<string>(
     defaultParameters.kmsPerYear
   );
-  const [modelOptions, setModelOptions] = useState(defaultModelsOptions);
   const [comparisonOptions, setComparisonOptions] = useState<any>([]);
   const [hybridOptions, setHybridOptions] = useState<any>([]);
   const [selectedComparisonVehicle, setSelectedComparisonVehicle] = useState<
@@ -84,7 +83,6 @@ export function ComparisonSteps({
     selectedComparisonVehicleUrl,
     setSelectedComparisonVehicleUrl
   ] = useState<any>(null);
-  const [loadingImage, setLoadingImage] = useState<any>(true);
   const [loadingHybridVehicelImage, setLoadingHybridVehicelImage] = useState<
     boolean
   >(true);
@@ -108,7 +106,6 @@ export function ComparisonSteps({
   }, []);
 
   useEffect(() => {
-    setLoadingImage(true);
     setLoadingHybridVehicelImage(true);
     setLoadingComparisonVehicelImage(true);
     if (selectedModelObject) {
@@ -262,7 +259,7 @@ export function ComparisonSteps({
           <span className="body1">I want to compare </span>
           <div className="compareVehicle">
             <Select
-              options={modelOptions}
+              options={defaultModelsOptions}
               value={selectedModel}
               onChange={changeModel}
             />
@@ -303,7 +300,10 @@ export function ComparisonSteps({
                 <div className="lds-dual-ring"></div>
               </div>
             ) : (
-              <img src={selectedComparisonVehicleUrl} />
+              <img
+                src={selectedComparisonVehicleUrl}
+                alt={selectedComparisonVehicleUrl}
+              />
             )}
           </div>
           <div className="carPicture right">
@@ -312,11 +312,17 @@ export function ComparisonSteps({
                 <div className="lds-dual-ring"></div>
               </div>
             ) : (
-              <img src={selectedHybridVehicleUrl} />
+              <img
+                src={selectedHybridVehicleUrl}
+                alt={selectedHybridVehicleUrl}
+              />
             )}
           </div>
           <div className="hiddenContainer">
-            <img src={selectedHybridVehicleUrl} />
+            <img
+              src={selectedHybridVehicleUrl}
+              alt={selectedHybridVehicleUrl}
+            />
           </div>
         </div>
       </ComparisonStep>

@@ -21,38 +21,41 @@ export function Comparison() {
   let { id } = useParams();
 
   useEffect(() => {
-    fetch("vehicle-data.json", {
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json"
-      }
-    })
-      .then(data => data.json())
-      .then(object => {
-        const { defaultParameters, models } = object;
-        const defaultModelsOptions = models.map((item: any) => ({
-          value: item.id,
-          label: item.lineName
-        }));
-        const firstModelId = models[0].id;
-        const listModelMatchParamId = models.filter(
-          (item: any) => item.id === id
-        );
+    const fetchModelId = (id: any) => {
+      fetch("vehicle-data.json", {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        }
+      })
+        .then(data => data.json())
+        .then(object => {
+          const { defaultParameters, models } = object;
+          const defaultModelsOptions = models.map((item: any) => ({
+            value: item.id,
+            label: item.lineName
+          }));
+          const firstModelId = models[0].id;
+          const listModelMatchParamId = models.filter(
+            (item: any) => item.id === id
+          );
 
-        const initialSelectedModelId =
-          listModelMatchParamId.length > 0 ? id : firstModelId;
-        const disclaimersInfo = models.filter(
-          (item: any) => item.id === initialSelectedModelId
-        )[0].disclaimers;
+          const initialSelectedModelId =
+            listModelMatchParamId.length > 0 ? id : firstModelId;
+          const disclaimersInfo = models.filter(
+            (item: any) => item.id === initialSelectedModelId
+          )[0].disclaimers;
 
-        setDisclaimersInfo(disclaimersInfo);
-        setModels(models);
-        setInitialSelectedModelId(initialSelectedModelId);
-        setDefaultParameters(defaultParameters);
-        setDefaultModelsOptions(defaultModelsOptions);
-        setDefaultComparisonValue(models[0].comparison[0].materialCode);
-        setDefaultHybridValue(models[0].hybrid[0]);
-      });
+          setDisclaimersInfo(disclaimersInfo);
+          setModels(models);
+          setInitialSelectedModelId(initialSelectedModelId);
+          setDefaultParameters(defaultParameters);
+          setDefaultModelsOptions(defaultModelsOptions);
+          setDefaultComparisonValue(models[0].comparison[0].materialCode);
+          setDefaultHybridValue(models[0].hybrid[0]);
+        });
+    };
+    fetchModelId(id);
   }, []);
 
   const updateData = (data: any) => {

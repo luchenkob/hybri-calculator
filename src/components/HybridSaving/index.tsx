@@ -34,9 +34,11 @@ function CompareTable({
               $
               <CountUp
                 start={
-                  savingDataHolder ? savingDataHolder.comparsion.fuelPrice : 0
+                  savingDataHolder
+                    ? Number(savingDataHolder.comparsion.fuelPrice)
+                    : 0
                 }
-                end={compareData.comparsion.fuelPrice}
+                end={Number(compareData.comparsion.fuelPrice)}
                 decimals={2}
               />
             </h3>
@@ -51,8 +53,10 @@ function CompareTable({
           value={
             <h3>
               <CountUp
-                start={savingDataHolder ? savingDataHolder.comparsion.co2 : 0}
-                end={compareData.comparsion.co2}
+                start={
+                  savingDataHolder ? Number(savingDataHolder.comparsion.co2) : 0
+                }
+                end={Number(compareData.comparsion.co2)}
                 decimals={2}
               />{" "}
               Tonnes
@@ -66,10 +70,10 @@ function CompareTable({
               <CountUp
                 start={
                   savingDataHolder
-                    ? savingDataHolder.comparsion.travelledDistance
+                    ? Number(savingDataHolder.comparsion.travelledDistance)
                     : 0
                 }
-                end={compareData.comparsion.travelledDistance}
+                end={Number(compareData.comparsion.travelledDistance)}
               />
               km
             </h3>
@@ -85,7 +89,9 @@ function CompareTable({
               {
                 <CountUp
                   start={
-                    savingDataHolder ? savingDataHolder.hybrid.fuelPrice : 0
+                    savingDataHolder
+                      ? Number(savingDataHolder.hybrid.fuelPrice)
+                      : 0
                   }
                   end={parseFloat(compareData.hybrid.fuelPrice)}
                   decimals={2}
@@ -99,7 +105,9 @@ function CompareTable({
             <h3>
               {
                 <CountUp
-                  start={savingDataHolder ? savingDataHolder.hybrid.co2 : 0}
+                  start={
+                    savingDataHolder ? Number(savingDataHolder.hybrid.co2) : 0
+                  }
                   end={parseFloat(compareData.hybrid.co2)}
                   decimals={2}
                 />
@@ -115,7 +123,7 @@ function CompareTable({
                 <CountUp
                   start={
                     savingDataHolder
-                      ? savingDataHolder.hybrid.travelledDistance
+                      ? Number(savingDataHolder.hybrid.travelledDistance)
                       : 0
                   }
                   end={parseFloat(compareData.hybrid.travelledDistance)}
@@ -130,26 +138,12 @@ function CompareTable({
   );
 }
 
-interface AnimationText {
-  text: string;
-  isDataChanged: boolean;
-}
-const AnimationText = ({ text, isDataChanged }: AnimationText) => {
-  return (
-    <span className={isDataChanged ? "animationText active" : "animationText"}>
-      {!isDataChanged && text}
-    </span>
-  );
-};
 export function HybridSaving({ compareData }: { compareData: any }) {
-  const [isDataChanged, setIsDataChanged] = useState(false);
   const [savingDataHolder, setSavingDataHolder] = useState<any>(null);
 
   useEffect(() => {
-    setIsDataChanged(true);
     setTimeout(() => {
       setSavingDataHolder(compareData);
-      setIsDataChanged(false);
     }, 500);
   }, [compareData]);
 
@@ -167,7 +161,7 @@ export function HybridSaving({ compareData }: { compareData: any }) {
                   <CountUp
                     start={
                       savingDataHolder
-                        ? savingDataHolder.savingData.fuelPrice
+                        ? Number(savingDataHolder.savingData.fuelPrice)
                         : 0
                     }
                     end={parseFloat(compareData.savingData.fuelPrice)}
@@ -185,7 +179,9 @@ export function HybridSaving({ compareData }: { compareData: any }) {
                 <p className="caculationText">
                   <CountUp
                     start={
-                      savingDataHolder ? savingDataHolder.savingData.co2 : 0
+                      savingDataHolder
+                        ? Number(savingDataHolder.savingData.co2)
+                        : 0
                     }
                     end={parseFloat(compareData.savingData.co2)}
                     decimals={2}
@@ -202,7 +198,7 @@ export function HybridSaving({ compareData }: { compareData: any }) {
                   <CountUp
                     start={
                       savingDataHolder
-                        ? savingDataHolder.savingData.travelledDistance
+                        ? Number(savingDataHolder.savingData.travelledDistance)
                         : 0
                     }
                     end={parseFloat(compareData.savingData.travelledDistance)}

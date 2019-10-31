@@ -17,6 +17,12 @@ export function Input({
 
   useEffect(() => {}, [inputEl]);
 
+  const keyPressHandler = (e: any) => {
+    // if (e.charCode == 46 || (e.charCode >= 48 && e.charCode <= 57)) {
+    // setValue(e.target.value);
+    // onChange(e.target.value);
+    // }
+  };
   const onChangeHandler = (e: any) => {
     setValue(e.target.value);
     onChange(e.target.value);
@@ -49,6 +55,7 @@ export function Input({
         type="text"
         value={inputValue}
         onChange={onChangeHandler}
+        onKeyPress={keyPressHandler}
         onBlur={onBlur}
       />
       {!isEditting && (

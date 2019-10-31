@@ -6,7 +6,7 @@ export function Footer({ disclaimersInfo }: { disclaimersInfo: any }) {
     <footer>
       <div className="footerContainer">
         <h4>
-          <img src={Arrow} className="arrowSign" />
+          <img src={Arrow} className="arrowSign" alt="arrowSign" />
           Disclaimers
         </h4>
         <div className="footerDisclaimerBox">

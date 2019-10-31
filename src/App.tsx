@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./logo.svg";
 import { Comparison } from "./pages/Comparison";
 import "./App.css";
 import { Route } from "react-router";
