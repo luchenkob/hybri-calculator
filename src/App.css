@@ -79,6 +79,7 @@ footer {
 
 .comparisonStep {
   margin-bottom: 80px;
+  overflow: hidden;
 }
 
 .comparisonStep>.overlineText {
@@ -169,11 +170,19 @@ select {
 .inputContainer {
   border-bottom: 1px solid var(--color-dark);
   display: inline-block;
+
+}
+
+.inputContainer span {
+  width: 102px;
+  text-align: left;
+  display: inline-block;
 }
 
 input {
   font-size: 24px;
-  display: inline;
+  height: 26px;
+  display: inline-block;
   max-width: 100px;
   position: absolute;
   top: -9999px;
@@ -293,7 +302,7 @@ button {
 
 .inputGroup {
   display: inline-block;
-  margin: 50px 35px 0;
+  margin: 50px 20px 0;
 }
 
 .arrowSign {
@@ -367,6 +376,31 @@ button {
 
 .flexInput {
   flex: 1px;
+}
+
+.fuel-text-area {
+  text-align: right;
+}
+
+.km-text-area {
+  text-align: left;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+
+  .personalise-text {
+    width: 420px;
+    margin: 0 auto;
+  }
+
+  .fuel-text-area {
+    text-align: left;
+  }
+
+  .km-text-area {
+    text-align: right;
+  }
+
 }
 
 @media (max-width: 767px) {

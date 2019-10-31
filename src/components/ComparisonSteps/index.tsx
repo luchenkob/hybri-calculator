@@ -234,11 +234,11 @@ export function ComparisonSteps({
   return (
     <div className="ComparisonStepsSection">
       <ComparisonStep index={1}>
-        <p className="body1 text-center no-margin">
+        <p className="body1 text-center no-margin personalise-text">
           Personalise your driving information to estimate your hybrid saving
         </p>
-        <div className="text-center">
-          <div className="inputGroup">
+        <div className="text-center flexBox">
+          <div className="inputGroup flexInput fuel-text-area">
             <p className="body1 no-margin">
               <label>Fuel cost per litre </label>
               <Input
@@ -249,7 +249,7 @@ export function ComparisonSteps({
               />
             </p>
           </div>
-          <div className="inputGroup">
+          <div className="inputGroup flexInput km-text-area">
             <p className="body1 no-margin">
               <label>Km's driven per year: </label>
               <Input onChange={setKmsPerYear} value={kmsPerYear} suffix="[4]" />
