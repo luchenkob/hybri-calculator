@@ -23,6 +23,7 @@ export function Select({
   useEffect(() => {
     setCompValue(value);
   }, [value]);
+
   useOutsideClick(ref, () => {
     setOpen(false);
   });

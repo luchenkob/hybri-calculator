@@ -73,7 +73,7 @@ footer {
   overflow: hidden;
 }
 
-.comparisonStep>.overlineText {
+.comparisonStep > .overlineText {
   margin-bottom: 30px;
 }
 
@@ -86,6 +86,7 @@ footer {
 }
 
 .hybridSavingContainer {
+  max-width: 796px;
   padding: 65px 32px 15px;
 }
 
@@ -95,7 +96,7 @@ footer {
   justify-content: space-between;
 }
 
-.compareTableContainer>div {
+.compareTableContainer > div {
   flex: 1;
   margin: 0 32px;
 }
@@ -159,11 +160,10 @@ select {
 .inputContainer {
   border-bottom: 1px solid var(--color-dark);
   display: inline-block;
-
 }
 
 .inputContainer span {
-  width: 102px;
+  width: 92px;
   text-align: left;
   display: inline-block;
 }
@@ -172,7 +172,7 @@ input {
   font-size: 24px;
   height: 26px;
   display: inline-block;
-  max-width: 100px;
+  max-width: 90px;
   position: absolute;
   top: -9999px;
   left: -9999px;
@@ -344,7 +344,6 @@ button {
   align-items: center;
   min-width: 600px;
   height: 300px;
-
 }
 
 .hiddenContainer {
@@ -405,7 +404,6 @@ button {
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
-
   .personalise-text {
     width: 420px;
     margin: 0 auto;
@@ -418,11 +416,9 @@ button {
   .km-text-area {
     text-align: right;
   }
-
 }
 
 @media (max-width: 767px) {
-
   /* //CSS */
   .hybridSavingContainer {
     padding: 65px 32px 15px;
@@ -440,7 +436,7 @@ button {
     padding-bottom: 60px;
   }
 
-  .comparisonStep>.overlineText {
+  .comparisonStep > .overlineText {
     margin-bottom: 16px;
   }
 
@@ -581,10 +577,7 @@ button {
   }
 }
 
-
 @media (max-width: 560px) {
-
-
   .hiddenContainer img,
   .carPicture img,
   .loadingBox {
@@ -629,8 +622,6 @@ button {
 }
 
 @media (max-width: 400px) {
-
-
   .loadingBox {
     min-width: 450px;
   }
@@ -657,7 +648,6 @@ button {
 */
 
 @media (max-width: 320px) {
-
   /* //CSS */
   .ComparisonStepsSection,
   .hybridSavingSection {

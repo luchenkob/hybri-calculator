@@ -15,11 +15,9 @@ export function Input({
   const [inputValue, setValue] = useState(value);
   const [isEditting, setIsEditting] = useState(false);
 
-  useEffect(() => {}, [inputEl]);
-
   const onChangeHandler = (e: any) => {
-    if (Number(e.target.value) && Number(e.target.value) > 0) {
-      setValue(Number(e.target.value));
+    if (Number(e.target.value) >= 0) {
+      setValue(e.target.value);
       onChange(e.target.value);
     }
   };
@@ -38,17 +36,15 @@ export function Input({
       .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
 
   const editHandler = (e: any) => {
-    if (inputEl.current != null) {
-      inputEl.current.focus();
-    }
-    setIsEditting(!isEditting);
+    setIsEditting(true);
   };
+
   return (
     <span className="inputContainer" onClick={editHandler}>
       <input
         className={isEditting ? "active" : ""}
         ref={inputEl}
-        type="text"
+        type="number"
         value={inputValue}
         onChange={onChangeHandler}
         onBlur={onBlur}
