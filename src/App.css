@@ -606,8 +606,28 @@ button {
 }
 
 @media (max-width: 375px) {
+  .App {
+    padding-bottom: 24px;
+  }
+  .footerContainer {
+    padding: 16px 0;
+  }
+  footer {
+    margin-top: 56px;
+  }
+  .contactSection {
+    padding: 32px 0;
+  }
+  label,
+  .captionText {
+    text-transform: uppercase;
+  }
   .comparisonStep {
-    margin-bottom: 40px;
+    margin-bottom: 24px;
+  }
+
+  .headerContainer {
+    padding: 86px 25px;
   }
 
   .ComparisonStepsSection {
@@ -616,8 +636,20 @@ button {
   }
 
   .hybridSavingContainer {
+    padding-top: 48px;
     padding-left: 25px;
     padding-right: 25px;
+  }
+  .hybridSavingContainer .underline {
+    padding-bottom: 8px;
+    border: 0;
+  }
+  .hybridSavingItem {
+    margin-bottom: 40px;
+  }
+  h3,
+  h2 {
+    font-size: 28px;
   }
 }
 
