@@ -24,9 +24,16 @@ header {
 }
 
 .headerContainer {
-  max-width: 1440px;
-  padding: 130px 56px;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 1440px;
+  height: 320px;
+}
+
+.headerContainer > h1{
+  padding: 0px 30px 10px;
 }
 
 footer,
@@ -54,18 +61,27 @@ footer {
   border-top: 1px solid var(--color-border);
 }
 
+.footerContainer > h4 {
+  margin: 30px 0px 10px;
+  line-height: 26px;
+}
+
 .footerDisclaimerBox {
   padding: 0 24px;
 }
 
 .contactSection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: url("./assets/images/background.png");
-  padding: 100px 0;
+  background-size: cover;
+  height: 469px;
 }
 
 .ComparisonStepsSection {
   background: var(--color-white);
-  padding: 80px 0;
+  padding: 80px 0 60px;
 }
 
 .comparisonStep {
@@ -83,11 +99,16 @@ footer {
 
 .hybridSavingSection {
   background: white;
+  margin-bottom: 40px;
 }
 
 .hybridSavingContainer {
   max-width: 796px;
   padding: 65px 32px 15px;
+}
+
+.hybridSavingContainer > h3 {
+  margin-top: 0; 
 }
 
 .compareTableContainer {
@@ -105,11 +126,23 @@ footer {
   max-width: 780px;
   text-align: center;
   background: var(--color-dark);
-  padding: 40px 30px;
+  padding: 40px 25px 42px;
+}
+
+.contactContainer > h2 {
+    max-width: 730px;
+    font-size: 36px;
+    margin: 0;
+    margin-bottom: 40px;
+    line-height: 48px;
 }
 
 .hybridSavingItem {
   margin-bottom: 50px;
+}
+
+.compareTableContainer .hybridSavingItem {
+  margin-bottom: 40px;
 }
 
 h1 {
@@ -201,8 +234,10 @@ input.active {
   position: absolute;
   left: 0;
   background: white;
-  min-width: 360px;
+  font-size: 18px;
+  min-width: 352px;
   width: 100%;
+  text-align: left;
   z-index: 1000;
 }
 
@@ -236,6 +271,7 @@ input.active {
 
 .body2 {
   font-size: 12px;
+  line-height: 18px;
   margin-bottom: 18px;
   color: var(--color-dark);
 }
@@ -249,6 +285,7 @@ input.active {
 
 .caculationText {
   font-size: 36px;
+  line-height: 48px;
   color: var(--color-dark);
   font-weight: bold;
   margin-top: 20px;
@@ -269,9 +306,12 @@ button {
 
 .primaryButton,
 .secondaryButton {
-  border-radius: 80px;
+  border-radius: 120px;
   font-weight: bold;
-  padding: 10px 30px;
+  padding: 12px 20px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0px 8px;
 }
 
 .primaryButton {
@@ -285,8 +325,9 @@ button {
 
 .closeButton {
   position: absolute;
-  top: 32px;
-  right: 32px;
+  margin: 0;
+  top: 56px;
+  right: 56px;
 }
 
 .inputGroup {
@@ -330,24 +371,29 @@ button {
 .carPicture img {
   display: block;
   margin: 0 auto;
-  width: 600px;
+  width: 100%;
+  -ms-transform: scale(2);
+  -moz-transform: scale(2);
+  -webkit-transform: scale(2);
+  -o-transform: scale(2);
+  transform: scale(2)
 }
 
 .carPicture {
-  display: flex;
+  position: relative;
+  width: 222px;
+  height: 200px;
 }
 
 .loadingBox {
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-width: 600px;
-  height: 300px;
-}
-
-.hiddenContainer {
-  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -ms-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 
 .animationText {
@@ -382,20 +428,8 @@ button {
   display: flex;
 }
 
-.carPicture.left img,
-.carPicture.left .loadingBox {
-  position: absolute;
-  left: -15%;
-}
-
-.carPicture.right img,
-.carPicture.right .loadingBox {
-  position: absolute;
-  right: -15%;
-}
-
 .hiddenContainer {
-  display: block;
+  display: none;
 }
 
 .hiddenContainer img {
@@ -429,11 +463,7 @@ button {
   }
 
   .ComparisonStepsSection {
-    padding: 48px 32px 0;
-  }
-
-  .ComparisonStepsSection {
-    padding-bottom: 60px;
+    padding: 48px 32px 26px;
   }
 
   .comparisonStep > .overlineText {
@@ -517,36 +547,23 @@ button {
     font-size: 20px;
   }
 
-  .hiddenContainer img,
-  .carPicture img,
-  .loadingBox {
-    width: 450px;
-  }
-
   .carPictureContainer {
-    position: relative;
-    display: flex;
-  }
-
-  .carPicture.left img,
-  .carPicture.left .loadingBox {
-    position: absolute;
-    left: -20%;
-  }
-
-  .carPicture.right img,
-  .carPicture.right .loadingBox {
-    position: absolute;
-    right: -20%;
-  }
-
-  .hiddenContainer {
-    display: block;
+    justify-content: space-between;
   }
 
   .hiddenContainer img {
     opacity: 0;
   }
+
+  .contactContainer {
+    max-width: 530px;
+    padding: 10px 40px 12px;
+  }
+
+  .contactContainer > h2 {
+    max-width: 464px;
+  }
+
 }
 
 .lds-dual-ring {
@@ -578,31 +595,15 @@ button {
 }
 
 @media (max-width: 560px) {
-  .hiddenContainer img,
-  .carPicture img,
-  .loadingBox {
-    width: 450px;
+  .carPicture {
+    width: 180px;
+    height: 150px;
   }
 
-  .carPicture.left img,
-  .carPicture.left .loadingBox {
-    position: absolute;
-    left: -40%;
+  .closeButton {
+    top: 44px;
+    right: 44px;
   }
-
-  .carPicture.right img,
-  .carPicture.right .loadingBox {
-    position: absolute;
-    right: -40%;
-  }
-
-  .carPictureContainer {
-    justify-content: space-between;
-  }
-
-  /* .loadingBox {
-    min-width: 450px;
-  } */
 }
 
 @media (max-width: 375px) {
@@ -627,7 +628,7 @@ button {
   }
 
   .headerContainer {
-    padding: 86px 25px;
+    height: 262px;
   }
 
   .ComparisonStepsSection {
@@ -651,26 +652,35 @@ button {
   h2 {
     font-size: 28px;
   }
+
+  .closeButton {
+    top: 32px;
+    right: 32px;
+  }
+
+  .contactContainer {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .contactContainer > h2 {
+    font-size: 28px;
+  }
+
+  .primaryButton, .secondaryButton {
+    display: block;
+    width: 100%;
+  }
 }
 
 @media (max-width: 400px) {
-  .loadingBox {
-    min-width: 450px;
+  .carPicture {
+    width: 120px;
+    height: 100px;
   }
 
-  .hiddenContainer img,
-  .carPicture img {
-    width: 450px;
-  }
-
-  .carPicture.left img {
-    position: absolute;
-    left: -60%;
-  }
-
-  .carPicture.right img {
-    position: absolute;
-    right: -60%;
+  .primaryButton, .secondaryButton{
+    margin-bottom: 16px;
   }
 }
 
