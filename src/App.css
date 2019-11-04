@@ -194,6 +194,17 @@ select {
   border-bottom: 1px solid var(--color-dark);
   display: inline-block;
 }
+.inputContainer.error {
+  border-bottom-color: red;
+}
+
+.error-text{
+  display: block;
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+  text-align: right;
+}
 
 .inputContainer span {
   width: 92px;
@@ -224,7 +235,7 @@ input.active {
 
 .selectContent {
   border-bottom: 1px solid var(--color-dark);
-  background: url("./assets/images/link.png") no-repeat right center;
+  background: url("./assets/images/link.svg") no-repeat right center;
   cursor: pointer;
   padding-bottom: 8px;
   text-align: left;
@@ -333,6 +344,10 @@ button {
 .inputGroup {
   display: inline-block;
   margin: 50px 32px 0;
+}
+
+.inputGroup .body1 {
+  display: inline-block;
 }
 
 .arrowSign {

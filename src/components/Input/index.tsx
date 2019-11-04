@@ -14,16 +14,25 @@ export function Input({
   const inputEl = useRef<HTMLInputElement>(null);
   const [inputValue, setValue] = useState(value);
   const [isEditting, setIsEditting] = useState(false);
+  const [isInvalid, setIsInvalid] = useState(false);
 
   const onChangeHandler = (e: any) => {
-    if (Number(e.target.value) >= 0) {
       setValue(e.target.value);
       onChange(e.target.value);
+  };
+
+  const onKeyDownHandler = (e: any) => {
+    if (e.key === 'Enter') {
+      e.target.blur();
     }
   };
 
   const onBlur = (e: any) => {
-    setIsEditting(false);
+    let isValid  = inputValidation(e.target.value);
+    if(isValid){
+      setIsEditting(false);
+    }
+    setIsInvalid(!isValid);
   };
 
   const formatNumber = (num: number) =>
@@ -39,23 +48,33 @@ export function Input({
     setIsEditting(true);
   };
 
+  const inputValidation  = (number: number) => {
+    return number > 0;
+  };
+
   return (
-    <span className="inputContainer" onClick={editHandler}>
-      <input
-        className={isEditting ? "active" : ""}
-        ref={inputEl}
-        type="number"
-        value={inputValue}
-        onChange={onChangeHandler}
-        onBlur={onBlur}
-      />
-      {!isEditting && (
-        <span>
-          {currency ? currencyFormat(inputValue) : formatNumber(inputValue)}
-          <sup>{suffix}</sup>
+      <span>
+        <span className={"inputContainer " + (isInvalid ? "error" : "")}  onClick={editHandler}>
+          <input
+            className={isEditting ? "active" : ""}
+            ref={inputEl}
+            type="number"
+            value={inputValue}
+            onChange={onChangeHandler}
+            onBlur={onBlur}
+            onKeyDown={onKeyDownHandler}
+          />
+          {!isEditting && (
+            <span>
+              {currency ? currencyFormat(inputValue) : formatNumber(inputValue)}
+              <sup>{suffix}</sup>
+            </span>
+          )}
         </span>
-      )}
-    </span>
+        {isInvalid && (
+          <span className="error-text">Not a valid number</span>
+        )}
+      </span>
   );
 }
 
