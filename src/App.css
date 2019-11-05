@@ -519,6 +519,10 @@ button {
     width: 100%;
   }
 
+  .inputGroup .body1 {
+    display: block;
+  }
+
   .body1 {
     font-size: 20px;
   }
