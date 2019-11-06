@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 
 export function Input({
   value,
@@ -17,19 +17,19 @@ export function Input({
   const [isInvalid, setIsInvalid] = useState(false);
 
   const onChangeHandler = (e: any) => {
-      setValue(e.target.value);
-      onChange(e.target.value);
+    setValue(e.target.value);
+    onChange(e.target.value);
   };
 
   const onKeyDownHandler = (e: any) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       e.target.blur();
     }
   };
 
   const onBlur = (e: any) => {
-    let isValid  = inputValidation(e.target.value);
-    if(isValid){
+    let isValid = inputValidation(e.target.value);
+    if (isValid) {
       setIsEditting(false);
     }
     setIsInvalid(!isValid);
@@ -48,33 +48,34 @@ export function Input({
     setIsEditting(true);
   };
 
-  const inputValidation  = (number: number) => {
+  const inputValidation = (number: number) => {
     return number > 0;
   };
 
   return (
-      <span>
-        <span className={"inputContainer " + (isInvalid ? "error" : "")}  onClick={editHandler}>
-          <input
-            className={isEditting ? "active" : ""}
-            ref={inputEl}
-            type="number"
-            value={inputValue}
-            onChange={onChangeHandler}
-            onBlur={onBlur}
-            onKeyDown={onKeyDownHandler}
-          />
-          {!isEditting && (
-            <span>
-              {currency ? currencyFormat(inputValue) : formatNumber(inputValue)}
-              <sup>{suffix}</sup>
-            </span>
-          )}
-        </span>
-        {isInvalid && (
-          <span className="error-text">Not a valid number</span>
+    <span>
+      <span
+        className={"inputContainer " + (isInvalid ? "error" : "")}
+        onClick={editHandler}
+      >
+        <input
+          className={isEditting ? "active" : ""}
+          ref={inputEl}
+          type="number"
+          value={inputValue}
+          onChange={onChangeHandler}
+          onBlur={onBlur}
+          onKeyDown={onKeyDownHandler}
+        />
+        {!isEditting && (
+          <span>
+            {currency ? currencyFormat(inputValue) : formatNumber(inputValue)}
+            <sup>{suffix}</sup>
+          </span>
         )}
       </span>
+      {isInvalid && <span className="error-text">Not a valid number</span>}
+    </span>
   );
 }
 

@@ -82,7 +82,7 @@ export function Comparison() {
             defaultHybridValue={defaultHybridValue}
           />
           <HybridSaving compareData={compareData} />
-          <Contact />
+          <Contact modelData={compareData} />
           <Footer disclaimersInfo={disclaimersInfo} />
         </>
       )}

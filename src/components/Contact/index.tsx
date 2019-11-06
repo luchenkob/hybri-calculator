@@ -1,15 +1,55 @@
 import React from "react";
 import { Button } from "@hybrid/components";
 
-export function Contact() {
+export function Contact({ modelData }: { modelData: any }) {
+  const sendMessageExplore = () => {
+    const { selectedHybridVehicle, selectedModel } = modelData;
+    window.postMessage(
+      {
+        type: "exit-brand-experience",
+        modelId: selectedModel,
+        materialCode: selectedHybridVehicle.materialCode
+      },
+      "*"
+    );
+  };
+
+  const sendMessageGetInTouch = () => {
+    const { selectedHybridVehicle, selectedModel } = modelData;
+    const {
+      grade,
+      engineFuel,
+      drivetrain,
+      transmission,
+      materialCode
+    } = selectedHybridVehicle;
+    window.postMessage(
+      {
+        type: "exit-contact-a-dealer",
+        modelId: selectedModel,
+        materialCode,
+        modelDetail: {
+          grade,
+          engineFuel,
+          drivetrain,
+          transmission
+        }
+      },
+      "*"
+    );
+  };
   return (
     <div className="contactSection">
       <div className="contactContainer">
         <h2>
           Find out more about your perfect Hybrid or speak to our specialist.
         </h2>
-        <Button className="primaryButton">Explore Now</Button>
-        <Button className="secondaryButton">Get In Touch</Button>
+        <Button onClick={sendMessageExplore} className="primaryButton">
+          Explore Now
+        </Button>
+        <Button onClick={sendMessageGetInTouch} className="secondaryButton">
+          Get In Touch
+        </Button>
       </div>
     </div>
   );

@@ -219,7 +219,7 @@ export function ComparisonSteps({
         selectedHybridVehicle
       );
 
-      onChange({ ...comparisonData, selectedModel });
+      onChange({ ...comparisonData, selectedModel, selectedHybridVehicle });
     }
   };
   useEffect(() => {
