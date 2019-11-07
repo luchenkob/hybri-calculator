@@ -6,7 +6,11 @@ import { Route } from "react-router";
 const App: React.FC = () => {
   return (
     <div className="App">
-      <Route path="/:id?" component={Comparison} />
+      <Route
+        path="/"
+        // search="?modelId=modelId"
+        component={Comparison}
+      />
     </div>
   );
 };

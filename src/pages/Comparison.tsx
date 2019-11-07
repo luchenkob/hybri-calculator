@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Header, Footer } from "@hybrid/layouts";
 import { Contact, ComparisonSteps, HybridSaving } from "@hybrid/components";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
 
 export function Comparison() {
   const [compareData, setCompareData] = useState<any>(null);
@@ -18,7 +22,8 @@ export function Comparison() {
     null
   );
 
-  let { id } = useParams();
+  let query = useQuery();
+  let id = query.get("modelId");
 
   useEffect(() => {
     const fetchModelId = (id: any) => {
