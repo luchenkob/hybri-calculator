@@ -234,11 +234,20 @@ input.active {
 }
 
 .selectContent {
+  font-size: 24px;
   border-bottom: 1px solid var(--color-dark);
-  background: url("./assets/images/link.svg") no-repeat right center;
+  background: url("./assets/images/chevron-down.svg") no-repeat right center;
   cursor: pointer;
   padding-bottom: 8px;
   text-align: left;
+}
+
+.comparisonVehicle .selectContent > span {
+  width: 90%;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .selectBox {
@@ -370,7 +379,7 @@ button {
 }
 
 .comparisonVehicleDropdown,
-.comparisonVehicleDropdown .selectContent {
+.comparisonVehicleDropdown {
   font-size: 18px;
 }
 
@@ -464,6 +473,17 @@ button {
 
   .km-text-area {
     text-align: right;
+  }
+}
+
+@media (max-width: 768px){
+  .contactContainer {
+    max-width: 530px;
+    padding: 10px 40px 12px;
+  }
+
+  .contactContainer > h2 {
+    max-width: 464px;
   }
 }
 
@@ -574,15 +594,6 @@ button {
     opacity: 0;
   }
 
-  .contactContainer {
-    max-width: 530px;
-    padding: 10px 40px 12px;
-  }
-
-  .contactContainer > h2 {
-    max-width: 464px;
-  }
-
 }
 
 .lds-dual-ring {
@@ -623,6 +634,20 @@ button {
     top: 44px;
     right: 44px;
   }
+}
+
+@media (max-width: 425px) {
+  .carPicture {
+    width: 120px;
+    height: 100px;
+  }
+
+  .primaryButton, .secondaryButton{
+    margin-bottom: 16px;
+  }
+
+
+
 }
 
 @media (max-width: 375px) {
@@ -689,17 +714,6 @@ button {
   .primaryButton, .secondaryButton {
     display: block;
     width: 100%;
-  }
-}
-
-@media (max-width: 400px) {
-  .carPicture {
-    width: 120px;
-    height: 100px;
-  }
-
-  .primaryButton, .secondaryButton{
-    margin-bottom: 16px;
   }
 }
 
