@@ -45,7 +45,9 @@ export function Select({
       ref={ref}
     >
       <div onClick={toggleOpen} className="selectContent">
-        {selectedItem[0] ? selectedItem[0].label : "Select an item"}
+	   <span>
+		 {selectedItem[0] ? selectedItem[0].label : "Select an item"}
+	   </span>
       </div>
       {open && (
         <ul className="selectBox">
