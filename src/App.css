@@ -187,7 +187,7 @@ select {
   border: none;
   outline: none;
   background: none;
-  font-family: " ToyotaType", "Arial", "Helvetica", sans-serif;
+  font-family: "ToyotaType", "Arial", "Helvetica", sans-serif;
 }
 
 .inputContainer {
@@ -206,13 +206,19 @@ select {
   text-align: right;
 }
 
-.inputContainer span {
-  width: 92px;
+.inputContainer .inputValue {
   text-align: left;
   display: inline-block;
 }
 
-input {
+.inputContainer > .inputValue,
+.inputContainer > input {
+  margin-bottom: 8px;
+  padding: 0;
+  height: auto;
+}
+
+.inputContainer > input {
   font-size: 24px;
   height: 26px;
   display: inline-block;
@@ -485,6 +491,10 @@ button {
   .contactContainer > h2 {
     max-width: 464px;
   }
+
+  .inputContainer > input {
+    max-width: 70px;
+  }
 }
 
 @media (max-width: 767px) {
@@ -543,7 +553,8 @@ button {
     display: block;
   }
 
-  .body1 {
+  .body1,
+  .inputContainer > input {
     font-size: 20px;
   }
 

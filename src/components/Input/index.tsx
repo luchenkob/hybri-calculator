@@ -17,8 +17,12 @@ export function Input({
   const [isInvalid, setIsInvalid] = useState(false);
 
   const onChangeHandler = (e: any) => {
-    setValue(e.target.value);
-    onChange(e.target.value);
+    const re = /^-?(\d+)?\.?(\d+)?$/;
+    console.log(re.test(e.target.value), e.target.value);
+    if (e.target.value === '' || re.test(e.target.value)) {
+      setValue(e.target.value);
+      onChange(e.target.value);
+    }
   };
 
   const onKeyDownHandler = (e: any) => {
@@ -39,7 +43,6 @@ export function Input({
     num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
 
   const currencyFormat = (num: any) =>
-    "$" +
     parseFloat(num)
       .toFixed(2)
       .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
@@ -58,17 +61,18 @@ export function Input({
         className={"inputContainer " + (isInvalid ? "error" : "")}
         onClick={editHandler}
       >
+        {currency && <span className="currency">$</span>}
         <input
           className={isEditting ? "active" : ""}
           ref={inputEl}
-          type="number"
+          type="text"
           value={inputValue}
           onChange={onChangeHandler}
           onBlur={onBlur}
           onKeyDown={onKeyDownHandler}
         />
         {!isEditting && (
-          <span>
+          <span className="inputValue">
             {currency ? currencyFormat(inputValue) : formatNumber(inputValue)}
             <sup>{suffix}</sup>
           </span>
