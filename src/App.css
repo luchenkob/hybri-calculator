@@ -315,7 +315,7 @@ input.active {
   line-height: 48px;
   color: var(--color-dark);
   font-weight: bold;
-  margin-top: 20px;
+  margin-top: 8px;
 }
 
 .overlineText {
@@ -343,6 +343,11 @@ button {
 
 .primaryButton {
   background: var(--color-white);
+  color: var(--color-dark);
+}
+
+.primaryButton:hover {
+  background: #ffffff;
 }
 
 .secondaryButton {
@@ -350,11 +355,19 @@ button {
   color: var(--color-white);
 }
 
+.secondaryButton:hover {
+  background: var(--color-white);
+  color: var(--color-dark);
+}
+
+
+
 .closeButton {
   position: absolute;
   margin: 0;
-  top: 56px;
-  right: 56px;
+  top: 44px;
+  right: 44px;
+  padding: 12px 12px 9px;
 }
 
 .inputGroup {
@@ -589,10 +602,6 @@ button {
     font-size: 16px;
   }
 
-  .caculationText {
-    margin-top: 16px;
-  }
-
   h1 {
     font-size: 32px;
   }
@@ -660,8 +669,8 @@ button {
   }
 
   .closeButton {
-    top: 44px;
-    right: 44px;
+    top: 32px;
+    right: 32px;
   }
 }
 
@@ -698,10 +707,7 @@ button {
   .contactSection {
     padding: 32px 0;
   }
-  label,
-  .captionText {
-    text-transform: uppercase;
-  }
+  
   .comparisonStep {
     margin-bottom: 24px;
   }
@@ -725,7 +731,7 @@ button {
     border: 0;
   }
   .hybridSavingItem {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
   }
   h3,
   h2 {
@@ -733,8 +739,8 @@ button {
   }
 
   .closeButton {
-    top: 32px;
-    right: 32px;
+    top: 20px;
+    right: 20px;
   }
 
   .contactContainer {

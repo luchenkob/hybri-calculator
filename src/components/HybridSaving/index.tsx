@@ -157,7 +157,7 @@ export function HybridSaving({ compareData }: { compareData: any }) {
               title={<>Estimated Fuel Saving Per Year</>}
               value={
                 <p className="caculationText">
-                  Saving $
+                  Save $
                   <CountUp
                     start={
                       savingDataHolder
