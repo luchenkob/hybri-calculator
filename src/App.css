@@ -16,6 +16,7 @@
   font-family: "ToyotaType", "Arial", "Helvetica", sans-serif;
   color: var(--color-dark);
   padding: 0 0 80px;
+  overflow: hidden;
 }
 
 header {
@@ -393,6 +394,7 @@ button {
   width: 100%;
   overflow: hidden;
   margin-top: 40px;
+  margin-bottom: 0;
   max-width: 960px;
   display: flex;
   justify-content: space-evenly;
@@ -456,6 +458,7 @@ button {
 .carPictureContainer {
   position: relative;
   display: flex;
+  overflow: hidden;
 }
 
 .hiddenContainer {
@@ -508,7 +511,12 @@ button {
   }
 
   .ComparisonStepsSection {
-    padding: 48px 32px 26px;
+    padding: 48px 0 26px;
+  }
+
+  .comparisonStep {
+    padding: 0 32px;
+    overflow: visible;
   }
 
   .comparisonStep > .overlineText {
@@ -599,6 +607,16 @@ button {
 
   .carPictureContainer {
     justify-content: space-between;
+    overflow: visible;
+    margin-bottom: 80px;
+  }
+
+  .carPicture.left img {
+    transform: scale(4) translate(-10%, 12%);
+  }
+
+  .carPicture.right img {
+    transform: scale(4) translate(10%, 12%);
   }
 
   .hiddenContainer img {
@@ -657,7 +675,13 @@ button {
     margin-bottom: 16px;
   }
 
+  .carPicture.left img {
+    transform: scale(5) translate(-8%, 10%);
+  }
 
+  .carPicture.right img {
+    transform: scale(5) translate(8%, 10%);
+  }
 
 }
 
@@ -725,6 +749,14 @@ button {
   .primaryButton, .secondaryButton {
     display: block;
     width: 100%;
+  }
+
+  .carPicture.left img {
+    transform: scale(4) translate(-12%, 12%);
+  }
+
+  .carPicture.right img {
+    transform: scale(4) translate(12%, 12%);
   }
 }
 
