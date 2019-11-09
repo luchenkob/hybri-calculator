@@ -1,6 +1,8 @@
 import React, { ReactNode, useEffect, useState } from "react";
 import CountUp from "react-countup";
 
+const animationDuration = 5;
+
 function HybridSavingItem({
   title,
   value
@@ -39,7 +41,8 @@ function CompareTable({
                     : 0
                 }
                 end={Number(compareData.comparsion.fuelPrice)}
-                decimals={2}
+                duration={animationDuration}
+                separator=","
               />
             </h3>
           }
@@ -57,6 +60,8 @@ function CompareTable({
                   savingDataHolder ? Number(savingDataHolder.comparsion.co2) : 0
                 }
                 end={Number(compareData.comparsion.co2)}
+                duration={animationDuration}
+                separator=","
                 decimals={2}
               />{" "}
               Tonnes
@@ -74,6 +79,8 @@ function CompareTable({
                     : 0
                 }
                 end={Number(compareData.comparsion.travelledDistance)}
+                duration={animationDuration}
+                separator=","
               />
               km
             </h3>
@@ -94,7 +101,8 @@ function CompareTable({
                       : 0
                   }
                   end={parseFloat(compareData.hybrid.fuelPrice)}
-                  decimals={2}
+                  duration={animationDuration}
+                  separator=","
                 />
               }
             </h3>
@@ -109,6 +117,8 @@ function CompareTable({
                     savingDataHolder ? Number(savingDataHolder.hybrid.co2) : 0
                   }
                   end={parseFloat(compareData.hybrid.co2)}
+                  duration={animationDuration}
+                  separator=","
                   decimals={2}
                 />
               }{" "}
@@ -127,6 +137,8 @@ function CompareTable({
                       : 0
                   }
                   end={parseFloat(compareData.hybrid.travelledDistance)}
+                  duration={animationDuration}
+                  separator=","
                 />
               }
               km
@@ -144,7 +156,7 @@ export function HybridSaving({ compareData }: { compareData: any }) {
   useEffect(() => {
     setTimeout(() => {
       setSavingDataHolder(compareData);
-    }, 500);
+    }, animationDuration*1000);
   }, [compareData]);
 
   return (
@@ -165,6 +177,8 @@ export function HybridSaving({ compareData }: { compareData: any }) {
                         : 0
                     }
                     end={parseFloat(compareData.savingData.fuelPrice)}
+                    duration={animationDuration}
+                    separator=","
                   />
                 </p>
               }
@@ -184,6 +198,8 @@ export function HybridSaving({ compareData }: { compareData: any }) {
                         : 0
                     }
                     end={parseFloat(compareData.savingData.co2)}
+                    duration={animationDuration}
+                    separator=","
                     decimals={2}
                   />{" "}
                   tonnes less
@@ -202,6 +218,8 @@ export function HybridSaving({ compareData }: { compareData: any }) {
                         : 0
                     }
                     end={parseFloat(compareData.savingData.travelledDistance)}
+                    duration={animationDuration}
+                    separator=","
                   />
                   km further
                 </p>

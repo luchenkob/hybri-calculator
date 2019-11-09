@@ -221,7 +221,6 @@ select {
 
 .inputContainer > input {
   font-size: 24px;
-  height: 26px;
   display: inline-block;
   max-width: 90px;
   position: absolute;

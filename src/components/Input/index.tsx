@@ -18,7 +18,6 @@ export function Input({
 
   const onChangeHandler = (e: any) => {
     const re = /^-?(\d+)?\.?(\d+)?$/;
-    console.log(re.test(e.target.value), e.target.value);
     if (e.target.value === '' || re.test(e.target.value)) {
       setValue(e.target.value);
       onChange(e.target.value);
@@ -49,6 +48,12 @@ export function Input({
 
   const editHandler = (e: any) => {
     setIsEditting(true);
+    setTimeout(() => {
+      if (inputEl.current) {
+        inputEl.current.focus();
+      }
+    }, 0);
+
   };
 
   const inputValidation = (number: number) => {
