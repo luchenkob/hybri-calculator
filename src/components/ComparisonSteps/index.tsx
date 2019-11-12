@@ -232,7 +232,7 @@ export function ComparisonSteps({
         <p className="body1 text-center no-margin personalise-text">
           Personalise your driving information to estimate your hybrid saving
         </p>
-        <div className="text-center flexBox">
+        <div className="text-center flexBoxLT">
           <div className="inputGroup flexInput fuel-text-area">
             <p className="body1 no-margin">
               <label>Fuel cost per litre </label>

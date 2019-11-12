@@ -87,7 +87,6 @@ footer {
 
 .comparisonStep {
   margin-bottom: 80px;
-  overflow: hidden;
 }
 
 .comparisonStep > .overlineText {
@@ -200,11 +199,13 @@ select {
 }
 
 .error-text{
+  position: absolute;
   display: block;
   color: red;
   font-size: 14px;
   margin-top: 5px;
   text-align: right;
+  right: 0;
 }
 
 .inputContainer .inputValue {
@@ -376,6 +377,7 @@ button {
 
 .inputGroup .body1 {
   display: inline-block;
+  position: relative;
 }
 
 .arrowSign {
@@ -483,6 +485,10 @@ button {
 }
 
 @media (min-width: 768px) and (max-width: 1024px) {
+  .flexBoxLT {
+    display: flex;
+  }
+
   .personalise-text {
     width: 420px;
     margin: 0 auto;
@@ -691,6 +697,9 @@ button {
     transform: scale(5) translate(8%, 10%);
   }
 
+  .error-text {
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 375px) {
