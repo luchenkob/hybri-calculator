@@ -40,13 +40,13 @@ export function Comparison() {
             value: item.id,
             label: item.lineName
           }));
-          const firstModelId = models[0].id;
+          const fallbackId = defaultParameters.fallbackId;
           const listModelMatchParamId = models.filter(
             (item: any) => item.id === id
           );
 
           const initialSelectedModelId =
-            listModelMatchParamId.length > 0 ? id : firstModelId;
+            listModelMatchParamId.length > 0 ? id : fallbackId;
           const disclaimersInfo = models.filter(
             (item: any) => item.id === initialSelectedModelId
           )[0].disclaimers;
