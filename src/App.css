@@ -3,6 +3,7 @@
   --color-dark: #1a1a1a;
   --color-gray: #666666;
   --color-border: #cccccc;
+  --color-error: #d1091b;
 }
 
 @font-face {
@@ -195,13 +196,13 @@ select {
   display: inline-block;
 }
 .inputContainer.error {
-  border-bottom-color: red;
+  border-bottom-color: var(--color-error);
 }
 
 .error-text{
   position: absolute;
   display: block;
-  color: red;
+  color: var(--color-error);
   font-size: 14px;
   margin-top: 5px;
   text-align: right;
@@ -699,6 +700,10 @@ button {
 
   .error-text {
     font-size: 12px;
+  }
+
+  .selectContent {
+    background-image: url("./assets/images/chevron-down-mobile.svg");
   }
 }
 
