@@ -3,7 +3,7 @@ import { Button } from "@hybrid/components";
 
 export function Header() {
   const sendMessageCloseWindow = () => {
-    window.postMessage({ type: "close-overlay" }, "*");
+    window.parent.postMessage({ type: "close-overlay" }, "*");
   };
   return (
     <header>

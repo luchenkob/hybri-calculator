@@ -4,7 +4,7 @@ import { Button } from "@hybrid/components";
 export function Contact({ modelData }: { modelData: any }) {
   const sendMessageExplore = () => {
     const { selectedHybridVehicle, selectedModel } = modelData;
-    window.postMessage(
+    window.parent.postMessage(
       {
         type: "exit-brand-experience",
         modelId: selectedModel,
@@ -23,7 +23,7 @@ export function Contact({ modelData }: { modelData: any }) {
       transmission,
       materialCode
     } = selectedHybridVehicle;
-    window.postMessage(
+    window.parent.postMessage(
       {
         type: "exit-contact-a-dealer",
         modelId: selectedModel,
