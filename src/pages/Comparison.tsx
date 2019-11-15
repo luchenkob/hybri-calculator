@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Header, Footer } from "@hybrid/layouts";
 import { Contact, ComparisonSteps, HybridSaving } from "@hybrid/components";
-import { useLocation } from "react-router-dom";
 
-function useQuery() {
-  return new URLSearchParams(useLocation().search);
+function getURLParam(name :any){
+    // eslint-disable-next-line
+    let results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results == null){
+        return null;
+    }
+    else {
+        return decodeURI(results[1]) || 0;
+    }
 }
 
 export function Comparison() {
@@ -22,8 +28,7 @@ export function Comparison() {
     null
   );
 
-  let query = useQuery();
-  let id = query.get("modelId");
+  let id = getURLParam("modelId");
 
   useEffect(() => {
     const fetchModelId = (id: any) => {

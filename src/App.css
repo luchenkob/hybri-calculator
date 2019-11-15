@@ -74,6 +74,9 @@ footer {
 
 .contactSection {
   display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background: url("./assets/images/background.png");
@@ -323,6 +326,7 @@ input.active {
   text-transform: uppercase;
   color: var(--color-gray);
   font-size: 14px;
+  letter-spacing: 0.12em;
 }
 
 button {
@@ -723,6 +727,7 @@ button {
   
   .comparisonStep {
     margin-bottom: 24px;
+    padding: 0;
   }
 
   .headerContainer {
@@ -730,8 +735,8 @@ button {
   }
 
   .ComparisonStepsSection {
-    padding-left: 25px;
-    padding-right: 25px;
+    padding-left: 24px;
+    padding-right: 24px;
   }
 
   .hybridSavingContainer {
@@ -802,5 +807,13 @@ button {
 
   .comparisonStep {
     margin-bottom: 60px;
+  }
+}
+
+/* IE10+ specific styles */
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .carPictureContainer {
+    justify-content: space-around;
   }
 }
