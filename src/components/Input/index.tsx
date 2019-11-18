@@ -38,6 +38,10 @@ export function Input({
     setIsInvalid(!isValid);
   };
 
+    const onFocus = (e: any) => {
+        setIsEditting(true);
+    };
+
   const formatNumber = (num: number) =>
     num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
 
@@ -45,16 +49,6 @@ export function Input({
     parseFloat(num)
       .toFixed(2)
       .replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
-
-  const editHandler = (e: any) => {
-    setIsEditting(true);
-    setTimeout(() => {
-      if (inputEl.current) {
-        inputEl.current.focus();
-      }
-    }, 0);
-
-  };
 
   const inputValidation = (number: number) => {
     return number > 0;
@@ -64,7 +58,6 @@ export function Input({
     <span>
       <span
         className={"inputContainer " + (isInvalid ? "error" : "")}
-        onClick={editHandler}
       >
         {currency && <span className="currency">$</span>}
         <input
@@ -74,14 +67,13 @@ export function Input({
           value={inputValue}
           onChange={onChangeHandler}
           onBlur={onBlur}
+          onFocus={onFocus}
           onKeyDown={onKeyDownHandler}
         />
-        {!isEditting && (
-          <span className="inputValue">
+          <span className={"inputValue " + (isEditting ? "editing" : "")} >
             {currency ? currencyFormat(inputValue) : formatNumber(inputValue)}
             <sup>{suffix}</sup>
           </span>
-        )}
       </span>
       {isInvalid && <span className="error-text">Not a valid number</span>}
     </span>

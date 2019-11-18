@@ -39,11 +39,29 @@ export function Select({
     e.preventDefault();
     setOpen(!open);
   };
+    const handleChange = (e: any) => {
+        setCompValue(e.target.value);
+    }
+
   return (
     <div
       className={className ? className + " selectContainer" : "selectContainer"}
       ref={ref}
     >
+      <select
+          className="select-hidden-accessible"
+          value={compValue ? compValue : ""}
+          onChange={handleChange}
+      >
+          {options.map((item: any) => (
+              <option
+                  key={item.value}
+                  value={item.value}
+              >
+                  {item.label}
+              </option>
+          ))}
+      </select>
       <div onClick={toggleOpen} className="selectContent">
 	   <span>
 		 {selectedItem[0] ? selectedItem[0].label : "Select an item"}
