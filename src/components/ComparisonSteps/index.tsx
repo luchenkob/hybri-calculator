@@ -1,5 +1,5 @@
 import React, { ReactNode, useState, useEffect } from "react";
-import { Input, Select } from "@hybrid/components";
+import { Input, Select, LoadingSpinners } from "@hybrid/components";
 import moment from "moment";
 import { useWindowDimensions } from "@hybrid/hooks";
 import { calculateData } from "../../helper";
@@ -295,7 +295,7 @@ export function ComparisonSteps({
           <div className="carPicture left">
             {loadingComparisonVehicelImage ? (
               <div className="loadingBox">
-                <div className="lds-dual-ring"></div>
+                <LoadingSpinners/>
               </div>
             ) : (
               <img
@@ -307,7 +307,7 @@ export function ComparisonSteps({
           <div className="carPicture right">
             {loadingHybridVehicelImage ? (
               <div className="loadingBox">
-                <div className="lds-dual-ring"></div>
+                <LoadingSpinners/>
               </div>
             ) : (
               <img

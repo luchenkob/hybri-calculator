@@ -66,6 +66,7 @@ footer {
 .footerContainer > h4 {
   margin: 30px 0px 10px;
   line-height: 26px;
+  cursor: pointer;
 }
 
 .footerDisclaimerBox {
@@ -152,6 +153,7 @@ footer {
 h1 {
   color: var(--color-white);
   font-size: 48px;
+  font-weight: 600;
 }
 
 h2 {
@@ -390,8 +392,6 @@ button {
   color: var(--color-dark);
 }
 
-
-
 .closeButton {
   position: absolute;
   margin: 0;
@@ -413,6 +413,10 @@ button {
 .arrowSign {
   display: inline-block;
   margin-right: 14px;
+}
+
+.footerContainer >.open .arrowSign{
+  transform: rotate(180deg);
 }
 
 .text-center {
@@ -835,6 +839,14 @@ button {
 /* IE10+ specific styles */
 
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .carPictureContainer {
+    justify-content: space-around;
+  }
+}
+
+/* MS Edge specific styles */
+
+@supports (-ms-ime-align:auto) {
   .carPictureContainer {
     justify-content: space-around;
   }
