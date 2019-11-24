@@ -346,6 +346,12 @@ input.active {
   color: var(--color-dark);
 }
 
+.personalise-text {
+  max-width: 756px;
+  margin: 0 auto;
+  line-height: 32px;
+}
+
 .captionText {
   text-align: left;
   font-size: 12px;
@@ -384,7 +390,7 @@ button:focus {
 .secondaryButton {
   border-radius: 120px;
   font-weight: bold;
-  padding: 10px 20px;
+  padding: 11px 20px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   margin: 0px 8px;
@@ -543,8 +549,7 @@ button:focus {
   }
 
   .personalise-text {
-    margin: 0 auto;
-    padding: 0 32px;
+    max-width: 676px;
   }
 
   .fuel-text-area {
