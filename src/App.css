@@ -133,11 +133,11 @@ footer {
   max-width: 780px;
   text-align: center;
   background: var(--color-dark);
-  padding: 40px 25px 42px;
+  padding: 40px 122px 42px;
 }
 
 .contactContainer > h2 {
-  max-width: 730px;
+  max-width: 533px;
   font-size: 36px;
   margin: 0;
   margin-bottom: 40px;
@@ -568,7 +568,7 @@ button:focus {
   }
 
   .contactContainer > h2 {
-    max-width: 464px;
+    max-width: 482px;
   }
 }
 
