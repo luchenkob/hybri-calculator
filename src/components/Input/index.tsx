@@ -74,6 +74,7 @@ export function Input({
           onBlur={onBlur}
           onFocus={onFocus}
           onKeyDown={onKeyDownHandler}
+          aria-selected="true"
           pattern="\d*"
         />
         <span className={"inputValue " + (isEditting ? "editing" : "")}>

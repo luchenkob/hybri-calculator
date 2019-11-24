@@ -207,9 +207,6 @@ export function ComparisonSteps({
   };
 
   const runCalculateData = () => {
-    console.log(fuelPrice);
-    console.log(kmsPerYear);
-    console.log(selectedComparisonVehicle.grade);
     if (
       fuelPrice &&
       kmsPerYear &&

@@ -2,6 +2,7 @@
   --color-white: #f5f5f5;
   --color-dark: #1a1a1a;
   --color-gray: #666666;
+  --color-lightGray: #eee;
   --color-border: #cccccc;
   --color-error: #d1091b;
 }
@@ -197,6 +198,11 @@ select {
   font-family: "ToyotaType", "Arial", "Helvetica", sans-serif;
 }
 
+/* TODO: Add accessibility
+.selectContainer:focus-within {
+  background: var(--color-lightGray);
+} */
+
 .inputContainer {
   border-bottom: 1px solid var(--color-dark);
   display: inline-block;
@@ -220,6 +226,11 @@ select {
 .inputContainer .inputValue {
   text-align: left;
   display: inline-block;
+}
+
+.selectItem.focus {
+  background: var(--color-dark);
+  color: white;
 }
 
 .inputContainer > .inputValue,
@@ -359,16 +370,21 @@ input.active {
 
 button {
   cursor: pointer;
-  font-size: 12px;
+  font-size: 11px;
   text-transform: uppercase;
   margin: 5px;
 }
+
+/* TODO: Add accessibility
+button:focus {
+  outline: 1px dashed var(--color-lightGray);
+} */
 
 .primaryButton,
 .secondaryButton {
   border-radius: 120px;
   font-weight: bold;
-  padding: 12px 20px;
+  padding: 10px 20px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   margin: 0px 8px;
@@ -376,6 +392,7 @@ button {
 
 .primaryButton {
   background: var(--color-white);
+  border: 1px solid var(--color-white);
   color: var(--color-dark);
 }
 

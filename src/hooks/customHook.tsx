@@ -16,6 +16,23 @@ export const useOutsideClick = (ref: any, callback: any) => {
   });
 };
 
+export const useTabControl = (open: any, callback: any) => {
+  const handleClick = (e: any) => {
+    if (open) {
+      e.preventDefault();
+      callback(e);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleClick);
+
+    return () => {
+      document.removeEventListener("keydown", handleClick);
+    };
+  });
+};
+
 function getWindowDimensions() {
   const { innerWidth: width, innerHeight: height } = window;
   return {

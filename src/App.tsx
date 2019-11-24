@@ -4,9 +4,6 @@ import "./App.css";
 import { Route } from "react-router";
 
 const App: React.FC = () => {
-  useEffect(() => {
-    window.addEventListener("message", data => console.log(data), false);
-  });
   return (
     <div className="App">
       <Route
