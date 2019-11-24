@@ -235,8 +235,10 @@ export function ComparisonSteps({
   return (
     <div className="ComparisonStepsSection">
       <ComparisonStep index={1}>
-        <p className="body1 text-center no-margin personalise-text">
-          Personalise your driving information to estimate your hybrid saving
+        <p className="body1 text-center personalise-text container">
+          To personalise your comparison, change the fuel cost to reflect your
+          local price and then choose how many kilometres you typically drive a
+          year.
         </p>
         <div className="text-center flexBoxLT">
           <div className="inputGroup flexInput fuel-text-area">

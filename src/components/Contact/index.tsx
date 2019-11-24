@@ -41,9 +41,7 @@ export function Contact({ modelData }: { modelData: any }) {
   return (
     <div className="contactSection">
       <div className="contactContainer">
-        <h2>
-          Find out more about your perfect Hybrid or speak to our specialist.
-        </h2>
+        <h2>Find your perfect Hybrid now or speak to a specialist.</h2>
         <Button onClick={sendMessageExplore} className="secondaryButton">
           Explore Now
         </Button>

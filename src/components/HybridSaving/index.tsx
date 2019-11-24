@@ -163,7 +163,7 @@ export function HybridSaving({ compareData }: { compareData: any }) {
       {compareData && (
         <div className="hybridSavingSection">
           <div className="hybridSavingContainer ">
-            <h3 className="underline">Your Hybrid saving</h3>
+            <h3 className="underline">Your Hybrid advantage</h3>
             <HybridSavingItem
               title={<>Estimated Fuel Saving Per Year</>}
               value={
@@ -178,7 +178,8 @@ export function HybridSaving({ compareData }: { compareData: any }) {
                     end={parseFloat(compareData.savingData.fuelPrice)}
                     duration={animationDuration}
                     separator=","
-                  />
+                  />{" "}
+                  on fuel
                 </p>
               }
             />
@@ -190,6 +191,7 @@ export function HybridSaving({ compareData }: { compareData: any }) {
               }
               value={
                 <p className="caculationText">
+                  You’ll produce{" "}
                   <CountUp
                     start={
                       savingDataHolder
@@ -201,7 +203,7 @@ export function HybridSaving({ compareData }: { compareData: any }) {
                     separator=","
                     decimals={2}
                   />{" "}
-                  tonnes less
+                  tonnes less CO<sub>2</sub>
                 </p>
               }
             />
@@ -209,7 +211,7 @@ export function HybridSaving({ compareData }: { compareData: any }) {
               title={<>Estimated Extra KM'S Per Year</>}
               value={
                 <p className="caculationText ">
-                  Travel{" "}
+                  You’ll be able to travel{" "}
                   <CountUp
                     start={
                       savingDataHolder
