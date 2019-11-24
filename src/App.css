@@ -66,6 +66,7 @@ footer {
 .footerContainer > h4 {
   margin: 30px 0px 10px;
   line-height: 26px;
+  cursor: pointer;
 }
 
 .footerDisclaimerBox {
@@ -74,6 +75,9 @@ footer {
 
 .contactSection {
   display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background: url("./assets/images/background.png");
@@ -150,6 +154,7 @@ footer {
 h1 {
   color: var(--color-white);
   font-size: 40px;
+  font-weight: 600;
 }
 
 h2 {
@@ -195,7 +200,9 @@ select {
 .inputContainer {
   border-bottom: 1px solid var(--color-dark);
   display: inline-block;
+  position: relative;
 }
+
 .inputContainer.error {
   border-bottom-color: var(--color-error);
 }
@@ -223,16 +230,39 @@ select {
 }
 
 .inputContainer > input {
+  opacity: 0;
   font-size: 24px;
   display: inline-block;
-  max-width: 90px;
   position: absolute;
-  top: -9999px;
-  left: -9999px;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.fuel-text-area input {
+  left: 14px;
 }
 
 input.active {
-  position: static;
+  opacity: 1;
+  position: absolute;
+}
+
+.inputContainer .editing {
+  visibility: hidden;
+}
+
+.select-hidden-accessible {
+  border: 0;
+  clip: rect(0 0 0 0);
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden !important;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
 }
 
 .selectContainer {
@@ -324,6 +354,7 @@ input.active {
   text-transform: uppercase;
   color: var(--color-gray);
   font-size: 14px;
+  letter-spacing: 0.12em;
 }
 
 button {
@@ -385,6 +416,10 @@ button {
   margin-right: 14px;
 }
 
+.footerContainer > .open .arrowSign {
+  transform: rotate(180deg);
+}
+
 .text-center {
   text-align: center;
 }
@@ -423,6 +458,7 @@ button {
   -webkit-transform: scale(2);
   -o-transform: scale(2);
   transform: scale(2);
+  pointer-events: none;
 }
 
 .carPicture {
@@ -511,10 +547,6 @@ button {
 
   .contactContainer > h2 {
     max-width: 464px;
-  }
-
-  .inputContainer > input {
-    max-width: 70px;
   }
 }
 
@@ -722,6 +754,7 @@ button {
 
   .comparisonStep {
     margin-bottom: 24px;
+    padding: 0;
   }
 
   .headerContainer {
@@ -729,8 +762,8 @@ button {
   }
 
   .ComparisonStepsSection {
-    padding-left: 25px;
-    padding-right: 25px;
+    padding-left: 24px;
+    padding-right: 24px;
   }
 
   .hybridSavingContainer {
@@ -802,5 +835,21 @@ button {
 
   .comparisonStep {
     margin-bottom: 60px;
+  }
+}
+
+/* IE10+ specific styles */
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .carPictureContainer {
+    justify-content: space-around;
+  }
+}
+
+/* MS Edge specific styles */
+
+@supports (-ms-ime-align: auto) {
+  .carPictureContainer {
+    justify-content: space-around;
   }
 }

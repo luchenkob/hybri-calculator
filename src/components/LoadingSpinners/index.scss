@@ -1,0 +1,76 @@
+.ty-loading-spinner-linear {
+    $component: &;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #1a1a1a;
+
+
+    &.-size-large {
+        width: 108px;
+
+        #{$component}__dot {
+            width: 12px;
+            height: 12px;
+        }
+    }
+
+    &__dot {
+        background: currentColor;
+        position: relative;
+        font-size: 0;
+        border-radius: 100%;
+        overflow: hidden;
+        width: 21px;
+        height: 21px;
+        animation: tyLoadingSpinnerLinearPulse 2.5s;
+        animation-iteration-count: infinite;
+    }
+
+    $dot-count: 4;
+    $stagger: .0877s;
+
+    @for $i from 1 through $dot-count {
+        &__dot--#{$i} {
+            animation-delay: ($i - 1) * $stagger - 2.5s;
+        }
+    }
+
+    $keyframe-count: 7;
+    $timeline-stretch: 90%;
+    $scale-min: (2 / 12);
+
+    $ease-in-out-jerk: .5; // acceleration / deceleration sharpness
+    $ease-in-out-tension: .5; // 0 = sine-like, 1 = linear-like
+    $ease-in-out-start: cubic-bezier(.5 + $ease-in-out-jerk, .5 - $ease-in-out-tension / 2, .5, .5 + $ease-in-out-tension / 2);
+    $ease-in-out-end: cubic-bezier(.5, .5 - $ease-in-out-tension / 2, .5 - $ease-in-out-jerk, .5 + $ease-in-out-tension / 2);
+    $ease-in-out-zoomed-jerk: .75;
+    $ease-in-out-zoomed-tension: .5;
+    $ease-in-out-zoomed-start: cubic-bezier(.5, .5 - $ease-in-out-zoomed-tension / 2, .5 - $ease-in-out-zoomed-jerk, .5 + $ease-in-out-zoomed-tension / 2);
+    $ease-in-out-zoomed-end: cubic-bezier(.5 + $ease-in-out-zoomed-jerk, .5 - $ease-in-out-zoomed-tension / 2, .5, .5 + $ease-in-out-zoomed-tension / 2);
+
+    @keyframes tyLoadingSpinnerLinearPulse {
+        #{0 / $keyframe-count * $timeline-stretch} { transform: scale($scale-min);
+            animation-timing-function: $ease-in-out-start;
+        }
+        #{1 / $keyframe-count * $timeline-stretch} { transform: scale(1);
+            animation-timing-function: $ease-in-out-end;
+        }
+        #{2 / $keyframe-count * $timeline-stretch} { transform: scale($scale-min);
+            animation-timing-function: $ease-in-out-zoomed-start;
+        }
+        #{3 / $keyframe-count * $timeline-stretch} { transform: scale(1);
+            animation-timing-function: $ease-in-out-zoomed-end;
+        }
+        #{4 / $keyframe-count * $timeline-stretch} { transform: scale($scale-min);
+            animation-timing-function: $ease-in-out-start;
+        }
+        #{5 / $keyframe-count * $timeline-stretch} { transform: scale(1);
+            animation-timing-function: $ease-in-out-end;
+        }
+        #{6 / $keyframe-count * $timeline-stretch} { transform: scale($scale-min); }
+
+        100% { transform: scale($scale-min); }
+    }
+}

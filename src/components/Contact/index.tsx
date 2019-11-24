@@ -44,10 +44,10 @@ export function Contact({ modelData }: { modelData: any }) {
         <h2>
           Find out more about your perfect Hybrid or speak to our specialist.
         </h2>
-        <Button onClick={sendMessageExplore} className="primaryButton">
+        <Button onClick={sendMessageExplore} className="secondaryButton">
           Explore Now
         </Button>
-        <Button onClick={sendMessageGetInTouch} className="secondaryButton">
+        <Button onClick={sendMessageGetInTouch} className="primaryButton">
           Get In Touch
         </Button>
       </div>

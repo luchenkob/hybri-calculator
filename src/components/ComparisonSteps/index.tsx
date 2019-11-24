@@ -1,7 +1,6 @@
-import React, { ReactNode, useState, useEffect, useRef } from "react";
-import { Input, Select } from "@hybrid/components";
+import React, { ReactNode, useState, useEffect } from "react";
+import { Input, Select, LoadingSpinners } from "@hybrid/components";
 import moment from "moment";
-import debounce from "lodash/debounce";
 import { useWindowDimensions } from "@hybrid/hooks";
 import { calculateData } from "../../helper";
 
@@ -303,7 +302,7 @@ export function ComparisonSteps({
           <div className="carPicture left">
             {loadingComparisonVehicelImage ? (
               <div className="loadingBox">
-                <div className="lds-dual-ring"></div>
+                <LoadingSpinners />
               </div>
             ) : (
               <img
@@ -315,7 +314,7 @@ export function ComparisonSteps({
           <div className="carPicture right">
             {loadingHybridVehicelImage ? (
               <div className="loadingBox">
-                <div className="lds-dual-ring"></div>
+                <LoadingSpinners />
               </div>
             ) : (
               <img
