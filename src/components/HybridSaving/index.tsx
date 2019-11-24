@@ -156,9 +156,8 @@ export function HybridSaving({ compareData }: { compareData: any }) {
   useEffect(() => {
     setTimeout(() => {
       setSavingDataHolder(compareData);
-    }, animationDuration*1000);
+    }, animationDuration * 1000);
   }, [compareData]);
-
   return (
     <>
       {compareData && (

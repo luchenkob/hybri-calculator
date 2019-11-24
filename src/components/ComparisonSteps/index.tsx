@@ -1,6 +1,7 @@
-import React, { ReactNode, useState, useEffect } from "react";
+import React, { ReactNode, useState, useEffect, useRef } from "react";
 import { Input, Select } from "@hybrid/components";
 import moment from "moment";
+import debounce from "lodash/debounce";
 import { useWindowDimensions } from "@hybrid/hooks";
 import { calculateData } from "../../helper";
 
@@ -205,7 +206,11 @@ export function ComparisonSteps({
       setSelectedHybridVehicleValue(hybridList[0].materialCode);
     }
   };
+
   const runCalculateData = () => {
+    console.log(fuelPrice);
+    console.log(kmsPerYear);
+    console.log(selectedComparisonVehicle.grade);
     if (
       fuelPrice &&
       kmsPerYear &&
@@ -218,10 +223,12 @@ export function ComparisonSteps({
         selectedComparisonVehicle,
         selectedHybridVehicle
       );
-
       onChange({ ...comparisonData, selectedModel, selectedHybridVehicle });
     }
   };
+
+  const validateMaximumPrice = (value: any) => value < 9.99;
+
   useEffect(() => {
     runCalculateData();
   }, [selectedComparisonVehicle, selectedHybridVehicle, fuelPrice, kmsPerYear]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -239,6 +246,7 @@ export function ComparisonSteps({
               <Input
                 onChange={setFuelPrice}
                 value={fuelPrice}
+                customValidation={validateMaximumPrice}
                 currency
                 suffix="[3]"
               />

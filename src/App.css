@@ -34,7 +34,7 @@ header {
   height: 320px;
 }
 
-.headerContainer > h1{
+.headerContainer > h1 {
   padding: 0px 30px 10px;
 }
 
@@ -92,6 +92,7 @@ footer {
 
 .comparisonStep > .overlineText {
   margin-bottom: 30px;
+  line-height: 18px;
 }
 
 .comparisonStep:last-child {
@@ -109,7 +110,7 @@ footer {
 }
 
 .hybridSavingContainer > h3 {
-  margin-top: 0; 
+  margin-top: 0;
 }
 
 .compareTableContainer {
@@ -131,11 +132,11 @@ footer {
 }
 
 .contactContainer > h2 {
-    max-width: 730px;
-    font-size: 36px;
-    margin: 0;
-    margin-bottom: 40px;
-    line-height: 48px;
+  max-width: 730px;
+  font-size: 36px;
+  margin: 0;
+  margin-bottom: 40px;
+  line-height: 48px;
 }
 
 .hybridSavingItem {
@@ -148,7 +149,7 @@ footer {
 
 h1 {
   color: var(--color-white);
-  font-size: 48px;
+  font-size: 40px;
 }
 
 h2 {
@@ -199,7 +200,7 @@ select {
   border-bottom-color: var(--color-error);
 }
 
-.error-text{
+.error-text {
   position: absolute;
   display: block;
   color: var(--color-error);
@@ -361,8 +362,6 @@ button {
   color: var(--color-dark);
 }
 
-
-
 .closeButton {
   position: absolute;
   margin: 0;
@@ -423,7 +422,7 @@ button {
   -moz-transform: scale(2);
   -webkit-transform: scale(2);
   -o-transform: scale(2);
-  transform: scale(2)
+  transform: scale(2);
 }
 
 .carPicture {
@@ -504,7 +503,7 @@ button {
   }
 }
 
-@media (max-width: 768px){
+@media (max-width: 768px) {
   .contactContainer {
     max-width: 530px;
     padding: 10px 40px 12px;
@@ -637,7 +636,6 @@ button {
   .hiddenContainer img {
     opacity: 0;
   }
-
 }
 
 .lds-dual-ring {
@@ -686,7 +684,8 @@ button {
     height: 100px;
   }
 
-  .primaryButton, .secondaryButton{
+  .primaryButton,
+  .secondaryButton {
     margin-bottom: 16px;
   }
 
@@ -720,7 +719,7 @@ button {
   .contactSection {
     padding: 32px 0;
   }
-  
+
   .comparisonStep {
     margin-bottom: 24px;
   }
@@ -765,7 +764,8 @@ button {
     font-size: 28px;
   }
 
-  .primaryButton, .secondaryButton {
+  .primaryButton,
+  .secondaryButton {
     display: block;
     width: 100%;
   }

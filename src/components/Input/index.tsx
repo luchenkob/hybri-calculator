@@ -4,12 +4,14 @@ export function Input({
   value,
   currency,
   suffix,
-  onChange
+  onChange,
+  customValidation
 }: {
   value: any;
   currency?: boolean;
   suffix?: string;
   onChange: (value: string) => void;
+  customValidation?: (value: string) => boolean;
 }) {
   const inputEl = useRef<HTMLInputElement>(null);
   const [inputValue, setValue] = useState(value);
@@ -18,9 +20,8 @@ export function Input({
 
   const onChangeHandler = (e: any) => {
     const re = /^-?(\d+)?\.?(\d+)?$/;
-    if (e.target.value === '' || re.test(e.target.value)) {
+    if (e.target.value === "" || re.test(e.target.value)) {
       setValue(e.target.value);
-      onChange(e.target.value);
     }
   };
 
@@ -32,10 +33,16 @@ export function Input({
 
   const onBlur = (e: any) => {
     let isValid = inputValidation(e.target.value);
+
+    if (customValidation) {
+      isValid = customValidation(e.target.value) && isValid;
+    }
+
     if (isValid) {
       setIsEditting(false);
     }
     setIsInvalid(!isValid);
+    onChange(inputValue);
   };
 
   const formatNumber = (num: number) =>
@@ -53,7 +60,6 @@ export function Input({
         inputEl.current.focus();
       }
     }, 0);
-
   };
 
   const inputValidation = (number: number) => {
@@ -75,6 +81,7 @@ export function Input({
           onChange={onChangeHandler}
           onBlur={onBlur}
           onKeyDown={onKeyDownHandler}
+          pattern="\d*"
         />
         {!isEditting && (
           <span className="inputValue">
