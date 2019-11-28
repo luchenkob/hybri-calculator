@@ -224,6 +224,7 @@ export function ComparisonSteps({
   };
 
   const validateMaximumPrice = (value: any) => value < 9.99;
+  const validateMaximumDistance = (value: any) => value <= 1000000;
 
   useEffect(() => {
     runCalculateData();
@@ -247,13 +248,20 @@ export function ComparisonSteps({
                 customValidation={validateMaximumPrice}
                 currency
                 suffix="[3]"
+                errorMessage="Please use a price between $0.01 and $9.99"
               />
             </p>
           </div>
           <div className="inputGroup flexInput km-text-area">
             <p className="body1 no-margin">
               <label>Km's driven per year: </label>
-              <Input onChange={setKmsPerYear} value={kmsPerYear} suffix="[4]" />
+              <Input
+                onChange={setKmsPerYear}
+                value={kmsPerYear}
+                customValidation={validateMaximumDistance}
+                suffix="[4]"
+                errorMessage="Please use a whole number between 1 and 1,000,000"
+              />
             </p>
           </div>
         </div>

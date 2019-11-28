@@ -192,10 +192,20 @@ ul {
 input,
 button,
 select {
+  outline-color: white;
   border: none;
-  outline: none;
+  outline: none !important;
   background: none;
   font-family: "ToyotaType", "Arial", "Helvetica", sans-serif;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 /* TODO: Add accessibility
@@ -361,7 +371,7 @@ input.active {
 
 .caculationText {
   font-size: 36px;
-  line-height: 48px;
+  line-height: 30px;
   color: var(--color-dark);
   font-weight: bold;
   margin-top: 8px;
@@ -385,6 +395,14 @@ button {
 button:focus {
   outline: 1px dashed var(--color-lightGray);
 } */
+
+.contactButtons {
+  display: block;
+}
+.mobileTopButton,
+.mobileBottomButton {
+  display: inline-block;
+}
 
 .primaryButton,
 .secondaryButton {
@@ -737,6 +755,23 @@ button:focus {
     width: 120px;
     height: 100px;
   }
+  .contactButtons {
+    display: table;
+    width: 100%;
+  }
+  .mobileTopButton {
+    display: table-header-group;
+    width: 100%;
+  }
+  .mobileBottomButton {
+    display: table-footer-group;
+    width: 100%;
+  }
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+    margin: 0;
+  }
 
   .primaryButton,
   .secondaryButton {
@@ -817,12 +852,6 @@ button:focus {
 
   .contactContainer > h2 {
     font-size: 28px;
-  }
-
-  .primaryButton,
-  .secondaryButton {
-    display: block;
-    width: 100%;
   }
 
   .carPicture.left img {

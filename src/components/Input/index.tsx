@@ -5,13 +5,15 @@ export function Input({
   currency,
   suffix,
   onChange,
-  customValidation
+  customValidation,
+  errorMessage
 }: {
   value: any;
   currency?: boolean;
   suffix?: string;
   onChange: (value: string) => void;
   customValidation?: (value: string) => boolean;
+  errorMessage: string;
 }) {
   const inputEl = useRef<HTMLInputElement>(null);
   const [inputValue, setValue] = useState(value);
@@ -68,21 +70,20 @@ export function Input({
         <input
           className={isEditting ? "active" : ""}
           ref={inputEl}
-          type="text"
+          type="number"
           value={inputValue}
           onChange={onChangeHandler}
           onBlur={onBlur}
           onFocus={onFocus}
           onKeyDown={onKeyDownHandler}
           aria-selected="true"
-          pattern="\d*"
         />
         <span className={"inputValue " + (isEditting ? "editing" : "")}>
           {currency ? currencyFormat(inputValue) : formatNumber(inputValue)}
           <sup>{suffix}</sup>
         </span>
       </span>
-      {isInvalid && <span className="error-text">Not a valid number</span>}
+      {isInvalid && <span className="error-text">{errorMessage}</span>}
     </span>
   );
 }

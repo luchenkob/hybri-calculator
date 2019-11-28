@@ -64,7 +64,7 @@ function CompareTable({
                 separator=","
                 decimals={2}
               />{" "}
-              Tonnes
+              tonnes
             </h3>
           }
         />
@@ -122,7 +122,7 @@ function CompareTable({
                   decimals={2}
                 />
               }{" "}
-              Tonnes
+              tonnes
             </h3>
           }
         />

@@ -42,12 +42,18 @@ export function Contact({ modelData }: { modelData: any }) {
     <div className="contactSection">
       <div className="contactContainer">
         <h2>Find your perfect Hybrid now or speak to a specialist</h2>
-        <Button onClick={sendMessageExplore} className="secondaryButton">
-          Explore Now
-        </Button>
-        <Button onClick={sendMessageGetInTouch} className="primaryButton">
-          Get In Touch
-        </Button>
+        <div className="contactButtons">
+          <div className="mobileBottomButton">
+            <Button onClick={sendMessageExplore} className="secondaryButton">
+              Explore Now
+            </Button>
+          </div>
+          <div className="mobileTopButton">
+            <Button onClick={sendMessageGetInTouch} className="primaryButton">
+              Get In Touch
+            </Button>
+          </div>
+        </div>
       </div>
     </div>
   );
