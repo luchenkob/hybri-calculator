@@ -3,6 +3,9 @@ import { Input, Select, LoadingSpinners } from "@hybrid/components";
 import moment from "moment";
 import { useWindowDimensions } from "@hybrid/hooks";
 import { calculateData } from "../../helper";
+import { CustomWindow } from "../../type";
+
+declare let window: CustomWindow;
 
 const angle = "000";
 const file_extension = "png";
@@ -183,6 +186,12 @@ export function ComparisonSteps({
       setHybridOptions(tranformSubModelToOptions(modelList[0].hybrid));
       setSelectedModel(value);
       setSelectedModelObject(modelList[0]);
+      window.dataLayer.push({
+        event: "gaClick",
+        eventCategory: "Hybrid Calculator",
+        eventAction: "Vehicle selector",
+        eventLabel: modelList[0].lineName //Eg: RAV4
+      });
     }
   };
 
@@ -193,6 +202,12 @@ export function ComparisonSteps({
     if (comparisonList.length > 0) {
       setSelectedComparisonVehicle(comparisonList[0]);
       setSelectedComparisonVehicleValue(comparisonList[0].materialCode);
+      window.dataLayer.push({
+        event: "gaClick",
+        eventCategory: "Hybrid Calculator",
+        eventAction: "Comparison vehicle petrol",
+        eventLabel: comparisonList[0].grade //Eg:GX @WD CVT Petrol
+      });
     }
   };
 
@@ -203,6 +218,12 @@ export function ComparisonSteps({
     if (hybridList.length > 0) {
       setSelectedHybridVehicle(hybridList[0]);
       setSelectedHybridVehicleValue(hybridList[0].materialCode);
+      window.dataLayer.push({
+        event: "gaClick",
+        eventCategory: "Hybrid Calculator",
+        eventAction: "Comparison vehicle hybrid",
+        eventLabel: hybridList[0].grade //Eg:GX 2WD CVT
+      });
     }
   };
 
@@ -221,6 +242,26 @@ export function ComparisonSteps({
       );
       onChange({ ...comparisonData, selectedModel, selectedHybridVehicle });
     }
+  };
+
+  const updateFuelPrice = (value: any) => {
+    window.dataLayer.push({
+      event: "gaClick",
+      eventCategory: "Hybrid Calculator",
+      eventAction: "Fuel cost",
+      eventLabel: value
+    });
+    setFuelPrice(value);
+  };
+
+  const updateKmsPerYear = (value: any) => {
+    window.dataLayer.push({
+      event: "gaClick",
+      eventCategory: "Hybrid Calculator",
+      eventAction: "Fuel cost",
+      eventLabel: value
+    });
+    setKmsPerYear(value);
   };
 
   const validateMaximumPrice = (value: any) => value < 9.99;
@@ -243,7 +284,7 @@ export function ComparisonSteps({
             <p className="body1 no-margin">
               <label>Fuel cost per litre </label>
               <Input
-                onChange={setFuelPrice}
+                onChange={updateFuelPrice}
                 value={fuelPrice}
                 customValidation={validateMaximumPrice}
                 currency
@@ -256,7 +297,7 @@ export function ComparisonSteps({
             <p className="body1 no-margin">
               <label>Km's driven per year: </label>
               <Input
-                onChange={setKmsPerYear}
+                onChange={updateKmsPerYear}
                 value={kmsPerYear}
                 customValidation={validateMaximumDistance}
                 suffix="[4]"

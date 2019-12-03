@@ -76,7 +76,6 @@ export function Input({
           onBlur={onBlur}
           onFocus={onFocus}
           onKeyDown={onKeyDownHandler}
-          aria-selected="true"
         />
         <span className={"inputValue " + (isEditting ? "editing" : "")}>
           {currency ? currencyFormat(inputValue) : formatNumber(inputValue)}

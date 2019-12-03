@@ -1,5 +1,8 @@
 import React from "react";
 import { Button } from "@hybrid/components";
+import { CustomWindow } from "../../type";
+
+declare let window: CustomWindow;
 
 export function Contact({ modelData }: { modelData: any }) {
   const sendMessageExplore = () => {
@@ -12,6 +15,12 @@ export function Contact({ modelData }: { modelData: any }) {
       },
       "*"
     );
+    window.dataLayer.push({
+      event: "gaClick",
+      eventCategory: "Hybrid Calculator",
+      eventAction: "button",
+      eventLabel: "Explore Now"
+    });
   };
 
   const sendMessageGetInTouch = () => {
@@ -37,6 +46,12 @@ export function Contact({ modelData }: { modelData: any }) {
       },
       "*"
     );
+    window.dataLayer.push({
+      event: "gaClick",
+      eventCategory: "Hybrid Calculator",
+      eventAction: "button",
+      eventLabel: "Get In Touch"
+    });
   };
   return (
     <div className="contactSection">

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Comparison } from "./pages/Comparison";
 import "./App.css";
 import { Route } from "react-router";
@@ -6,11 +6,7 @@ import { Route } from "react-router";
 const App: React.FC = () => {
   return (
     <div className="App">
-      <Route
-        path="/"
-        // search="?modelId=modelId"
-        component={Comparison}
-      />
+      <Route path="/" component={Comparison} />
     </div>
   );
 };

@@ -1,9 +1,18 @@
 import React from "react";
 import { Button } from "@hybrid/components";
+import { CustomWindow } from "../type";
+
+declare let window: CustomWindow;
 
 export function Header() {
   const sendMessageCloseWindow = () => {
     window.parent.postMessage({ type: "close-overlay" }, "*");
+    window.dataLayer.push({
+      event: "gaClick",
+      eventCategory: "Hybrid Calculator",
+      eventAction: "button",
+      eventLabel: "close"
+    });
   };
   return (
     <header>
