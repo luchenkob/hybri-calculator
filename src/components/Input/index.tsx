@@ -71,6 +71,7 @@ export function Input({
           className={isEditting ? "active" : ""}
           ref={inputEl}
           type="number"
+          step="any"
           value={inputValue}
           onChange={onChangeHandler}
           onBlur={onBlur}
