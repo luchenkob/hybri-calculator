@@ -165,7 +165,7 @@ export function HybridSaving({ compareData }: { compareData: any }) {
           <div className="hybridSavingContainer ">
             <h3 className="underline">Your Hybrid advantage</h3>
             <HybridSavingItem
-              title={<>Estimated Fuel Saving Per Year</>}
+              title={<>Estimated fuel cost saving per year</>}
               value={
                 <p className="caculationText">
                   Save $
@@ -207,6 +207,9 @@ export function HybridSaving({ compareData }: { compareData: any }) {
                 </p>
               }
             />
+            <div className="hybridSavingItem">
+              <b className="textBlack overlineText">OR</b>
+            </div>
             <HybridSavingItem
               title={<>Estimated Extra KM'S Per Year</>}
               value={

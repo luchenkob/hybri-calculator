@@ -190,6 +190,10 @@ ul {
   list-style-type: none;
 }
 
+.textBlack {
+  color: black !important;
+}
+
 input,
 button,
 select {
