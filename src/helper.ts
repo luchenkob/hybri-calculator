@@ -39,6 +39,10 @@ export const calculateData = (
     parseInt(kmsPerYear);
 
   const vehiclesData = {
+    input: {
+      fuelPrice,
+      kmsPerYear
+    },
     comparsion: {
       fuelPrice: comparisonFuelCost,
       co2: comparisonCo2.toFixed(2),

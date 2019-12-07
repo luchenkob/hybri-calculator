@@ -2,15 +2,16 @@ import React, { useState, useEffect } from "react";
 import { Header, Footer } from "@hybrid/layouts";
 import { Contact, ComparisonSteps, HybridSaving } from "@hybrid/components";
 
-function getURLParam(name :any){
-    // eslint-disable-next-line
-    let results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-    if (results == null){
-        return null;
-    }
-    else {
-        return decodeURI(results[1]) || 0;
-    }
+function getURLParam(name: any) {
+  // eslint-disable-next-line
+  let results = new RegExp("[?&]" + name + "=([^&#]*)").exec(
+    window.location.href
+  );
+  if (results == null) {
+    return null;
+  } else {
+    return decodeURI(results[1]) || 0;
+  }
 }
 
 export function Comparison() {
@@ -23,6 +24,7 @@ export function Comparison() {
   const [defaultHybridValue, setDefaultHybridValue] = useState<any>(null);
   const [disclaimersInfo, setDisclaimersInfo] = useState<any>(null);
   const [models, setModels] = useState<any>(null);
+  const [selectedModel, setSelectedModel] = useState<any>(null);
 
   const [initialSelectedModelId, setInitialSelectedModelId] = useState<any>(
     null
@@ -52,9 +54,11 @@ export function Comparison() {
 
           const initialSelectedModelId =
             listModelMatchParamId.length > 0 ? id : fallbackId;
-          const disclaimersInfo = models.filter(
+          const initialModel = models.filter(
             (item: any) => item.id === initialSelectedModelId
-          )[0].disclaimers;
+          )[0];
+          const disclaimersInfo = initialModel.disclaimers;
+          setSelectedModel(initialModel);
 
           setDisclaimersInfo(disclaimersInfo);
           setModels(models);
@@ -70,13 +74,14 @@ export function Comparison() {
 
   const updateData = (data: any) => {
     const { selectedModel } = data;
-    const disclaimersInfo = models.filter(
-      (item: any) => item.id === selectedModel
-    )[0].disclaimers;
+
+    const model = models.filter((item: any) => item.id === selectedModel)[0];
+    const disclaimersInfo = model.disclaimers;
+    setSelectedModel(model);
+
     setDisclaimersInfo(disclaimersInfo);
     setCompareData(data);
   };
-
   return (
     <div>
       <Header />
@@ -93,7 +98,11 @@ export function Comparison() {
           />
           <HybridSaving compareData={compareData} />
           <Contact modelData={compareData} />
-          <Footer disclaimersInfo={disclaimersInfo} />
+          <Footer
+            disclaimersInfo={disclaimersInfo}
+            compareData={compareData}
+            selectedModel={selectedModel}
+          />
         </>
       )}
     </div>
